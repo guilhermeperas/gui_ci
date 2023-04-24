@@ -17,7 +17,10 @@ class BaseUpload extends CI_Controller {
         // upload->do_upload('valor do post');
 
         if(!$this->upload->do_upload('image')){
-            
+            $data['info'] = $this->upload->display_errors();
+        }else{
+            // upload->data() -> info do upload
+            $data['info_upload'] = $this->upload->data();
         }
         $this->load->view('upload',$data);
     }
