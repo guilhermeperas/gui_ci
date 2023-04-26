@@ -64,4 +64,4 @@ $route['edit/(:num)'] = "Base/Edit/$1";
 $route['save/(:num)'] = "Base/Save/$1";
 $route['delete/(:num)'] = "Base/Delete/$1";
 
-$route['upload'] = 'BaseUpload/Upload';
+$route['upload'] = 'BaseUpload/index';
