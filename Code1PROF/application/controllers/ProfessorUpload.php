@@ -47,7 +47,7 @@ class BaseO extends CI_Controller { // Controller upload otimizado
         $this->load->view('upload',$data);
     }
     private function optImage($type){
-        $this->upload->initialize($configMain[$type]);
+        $this->image_lib->initialize($configMain[$type]);
 
         if(!$this->image_lib->{($opt == 'thumb') ? 'resize' : $opt}()){
             $data['info'] = "<br/> NÃO FOI POSSIVEL GERAR O ".$type." DEVIDO AOS ERROS ABAIXO:<br/>";
