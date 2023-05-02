@@ -60,8 +60,12 @@ $route['contato'] = "Contato/index";
 $route['update'] = "Base/Update";
 $route['base'] = "Base/index";
 
+
 $route['edit/(:num)'] = "Base/Edit/$1";
 $route['save/(:num)'] = "Base/Save/$1";
 $route['delete/(:num)'] = "Base/Delete/$1";
 
 $route['upload'] = 'BaseUpload/index';
+
+// paginacao
+$route['clientes/(:num)'] = "Clientes"; 
