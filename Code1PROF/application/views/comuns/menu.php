@@ -14,5 +14,6 @@ $this->router->fetch_method(): se existe o metodo na classe.
 	<!-- Para os exemplos de UPLOAD -->
 	<li class="<?=($this->router->fetch_class() == 'BaseUpload' && $this->router->fetch_method() == 'upload')? 'active' : null;?>"><a href="<?=base_url('upload')?>">Upload</a></li>
 	<li class="<?=($this->router->fetch_class() == 'BaseUpload' && $this->router->fetch_method() == 'clientes')? 'active' : null;?>"><a href="<?=base_url('clientes')?>">Paginacao</a></li>
+	<li class="<?=($this->router->fetch_class() == 'BaseUpload' && $this->router->fetch_method() == 'pseudovariables')? 'active' : null;?>"><a href="<?=base_url('pseudovariables')?>">Parser</a></li>
 	<li class="">Download</li>	
 </ul>
