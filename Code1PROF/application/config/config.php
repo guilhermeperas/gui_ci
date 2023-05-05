@@ -138,6 +138,7 @@ $config['subclass_prefix'] = 'MY_';
 | Note: This will NOT disable or override the CodeIgniter-specific
 |	autoloading (application/config/autoload.php)
 */
+// aqui fica sempre os packet manager
 $config['composer_autoload'] = 'vendor/autoload.php';
 
 /*

@@ -2,11 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class PseudoVariables extends CI_Controller { 
-    
+    private $m;
     function __construct(){
         parent::__construct();
-
         $this->load->library(array('pagination','parser')); // parser -> pseudovariaveis interna do CI
+        // usando mustache no construtor
+        $loader = new Mustache_Loader_FilesystemLoader('./templates'); // parametro é o caminho para as views 
+
+        $this->m = new Mustache_Engine(['loader' => $loader]);
     }
     
     public function index(){
@@ -59,6 +62,19 @@ class PseudoVariables extends CI_Controller {
         $data['list_users_h'] = 'Titulo da lista';
         $data['list_users_h'] = $listaContatos;
         $this->parser->parse('pseudovariables2',$data);
-
+    }
+    public function exemplo3(){ // Exemplo basico usando mustache
+        $m = new Mustache_Engine;
+        // echo $m->render('template',pseudovariables);
+        echo $m->render('Hello {{planet}}',array('planet' => 'World'));
+    }
+    public function exemplo4(){
+        $modelo =
+            '<div><p>{{nome}} - {{morada}}</p></div>';
+        $info = array(
+            'nome' => 'sergio',
+            'morada' => 'funchal'
+        );
+        echo $this->m->render($modelo,$info);
     }
 }
