@@ -7,8 +7,11 @@ class PseudoVariables extends CI_Controller {
         parent::__construct();
         $this->load->library(array('pagination','parser')); // parser -> pseudovariaveis interna do CI
         // usando mustache no construtor
-        $loader = new Mustache_Loader_FilesystemLoader('./templates'); // parametro é o caminho para as views 
+        // $this->m = new Mustache_Engine(); // usamos isto para tudo antes do exemplo 5
+        
 
+        // depois do exemplo 5
+        $loader = new Mustache_Loader_FilesystemLoader('./templates'); // parametro é o caminho para as views || so usamos isto quando usarmos os templates
         $this->m = new Mustache_Engine(['loader' => $loader]);
     }
     
@@ -70,11 +73,68 @@ class PseudoVariables extends CI_Controller {
     }
     public function exemplo4(){
         $modelo =
-            '<div><p>{{nome}} - {{morada}}</p></div>';
+            '<div>
+                <p>{{nome}} - {{morada}}</p>
+                <a href="{{caminho}}">Exemplo 5</a>
+            </div>';
         $info = array(
             'nome' => 'sergio',
-            'morada' => 'funchal'
+            'morada' => 'funchal',
+            'caminho' => base_url('/pseudovariables/exemplo5'),
         );
         echo $this->m->render($modelo,$info);
+    }
+    public function exemplo5(){
+        $listaUsers = array(
+                array(
+                    'id' => 1,
+                    'nome' => 'Jorge',
+                    'email' => 'jorge@jorge'
+                ),
+                array(
+                    'id' => 2,
+                    'nome' => 'Gui',
+                    'email' => 'gui@gui'
+                ),
+                array(
+                    'id' => 3,
+                    'nome' => 'abreu',
+                    'email' => 'abreu@abreu'
+                ),
+            );
+        $data = [
+            'lista_users_h3' => 'Exemplo mustache com array estatico',
+            'listaUsers' => $listaUsers,
+            'caminho' => base_url('/pseudovariables/exemplo6'),
+        ];
+        echo $this->m->render('exemplo5',$data);
+    }
+    public function exemplo6(){
+        $query = $this->db->query("SELECT * FROM users");
+         $data = array(
+            'lista_users_h3' => 'Exemplo mustache com db',
+            'listaUsers' => $query->result_array(),
+            'caminho' => base_url('/pseudovariables/exemplo7'),
+        );
+        echo $this->m->render('exemplo6',$data);
+    }
+    public function exemplo7(){
+        // so carregamos aqui pois é so nesta função que utilizamos
+        $this->load->model('pseudovariables_model');
+        $config = array(
+            'base_url' => base_url()."PseudoVariables/exemplo7",
+            'total_rows' => $this->pseudovariables_model->get_Count(),
+            'per_page' => 1,
+        );
+        $this->pagination->initialize($config);
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3):0;
+        $listaUsers = $this->pseudovariables_model->get_users($config['per_page'],$page);
+        $data = array(
+            'lista_users_h3' => 'Exemplo mustache com db',
+            'listaUsers' => $listaUsers,
+            'links' => $this->pagination->create_links(),
+        );
+        // para carregar as strings dos links usamos {{{}}} como se fosse o parse_string();
+        echo $this->m->render('exemplo7',$data);
     }
 }

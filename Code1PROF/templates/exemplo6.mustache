@@ -1,0 +1,35 @@
+<body>
+    <div id="container1">
+        <h3>{{lista_users_h3}}</h3>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NOME</th>
+                    <th>morada</th>
+                    <th>email</th>
+                    <th>username</th>
+                    <th>password</th>
+                    <th>fullname</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#listaUsers}}
+                <!-- ASSIM SABE QUE É UMA LISTA -->
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{nome}}</td>
+                    <td>{{morada}}</td>
+                    <th>{{email}}</th>
+                    <th>{{username}}</th>
+                    <th>{{password}}</th>
+                    <th>{{fullname}}</th>
+                </tr>
+                {{/listaUsers}}
+            </tbody>
+        </table>
+        <a href="{{caminho}}">Exemplo 7</a>
+    </div>
+</body>
