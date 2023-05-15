@@ -18,7 +18,7 @@ class Login_model extends CI_Model {
         return false;
     }
     public function checkPassword($password,$hashedPassword){ 
-        return $this->phppass->CheckPassword($password,$hashed_password);
+        return $this->phpass->CheckPassword($password,$hashedPassword);
     }
     public function isLoggedIn(){
         // logged_in = $_SESSION['logged_in'];

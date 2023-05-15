@@ -12,7 +12,7 @@ class Login extends CI_Controller {
 
 	}
 	public function index(){
-    	$this->load->view('email');
+    	$this->load->view('login');
 	}
 	public function login(){
 		if($this->login_model->isLoggedIn())
