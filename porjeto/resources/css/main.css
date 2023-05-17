@@ -1,0 +1,41 @@
+.menu {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+.menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+.menu li {
+  display: inline-block;
+}
+
+.menu li:last-child {
+  margin-left: auto;
+}
+
+.menu a {
+  display: block;
+  padding: 10px 20px;
+  color: #333;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  background-color: #333;
+  color: #fff;
+}
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
