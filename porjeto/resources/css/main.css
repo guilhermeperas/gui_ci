@@ -1,3 +1,7 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .menu {
   background-color: #333;
   text-align: center;
@@ -30,6 +34,7 @@
   background-color: grey;
   color: #fff;
 }
+
 .footer {
   background-color: #333;
   color: #fff;
@@ -40,6 +45,7 @@
   bottom: 0;
   width: 100%;
 }
+
 .footer a {
   padding: 10px 20px;
   background-color: white;

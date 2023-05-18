@@ -10,29 +10,28 @@ class Login extends CI_Controller {
 		$this->load->model('login_model');
         $this->login_model->initialize($this->passwordhash);
 		$this->data = array(
-			'title' => 'Login',
-			'css' => base_url("resources/css/login.css"),
 			'action' => base_url('log_in'),
 		);
 
 	}
 	public function index()
 	{
+		if($this->login_model->isLoggedIn()){
+			redirect('profile');
+			return;
+		}
 		$this->fileloader->loadView('Login',$this->data,false);
 	}
 	public function login(){
-		if($this->login_model->isLoggedIn())
-			redirect('profile');
 		$this->form_validation->set_rules('username','user','required');
 		$this->form_validation->set_rules('password','senha','required');
 		if($this->form_validation->run()){
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
-			echo $this->login_model->crypt_password($password);
 			if($user = $this->login_model->getByUsername($username))
 				if($this->login_model->checkPassword($password,$user['password'])){
 					$this->login_model->createSession($user);
-					$this->fileLoader->loadView('Profile');
+					$this->fileloader->loadView('Profile');
 				}
 		}
 		$this->data['error'] = 'Dados inválidos';
