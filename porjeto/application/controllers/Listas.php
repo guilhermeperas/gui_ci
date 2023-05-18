@@ -28,13 +28,7 @@ class Listas extends CI_Controller { // TODO este controler precisa de olhos
 			'title' => 'Lista de '.$list,
 			'css' => base_url("resources/css/listas.css"),
 		);
-
-		if($list === 'medicos' || $list === 'enfermeiros')
-			$data['l'.$list] = $this->{$list . '_model'}->getNameEspecialidade();
-		if($list === 'consultas')
-			$data['l'.$list] = $this->{$list . '_model'}->getTodaysConsulta();
-		if($list === 'utentes')
-			$data['l'.$list] = $this->{$list . '_model'}->getNameCidade();
+		$data['l'.$list] = $this->{$list . '_model'}->getNotLoggedInList();
 		$this->fileloader->loadView('l'.$list,$data);
 	}
 }

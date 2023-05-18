@@ -28,10 +28,11 @@ class Login extends CI_Controller {
 		if($this->form_validation->run()){
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
+			echo $this->login_model->crypt_password($password);
 			if($user = $this->login_model->getByUsername($username))
 				if($this->login_model->checkPassword($password,$user['password'])){
 					$this->login_model->createSession($user);
-					redirect(base_url().'profile'); 
+					$this->fileLoader->loadView('Profile');
 				}
 		}
 		$this->data['error'] = 'Dados inválidos';

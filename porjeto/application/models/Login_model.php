@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login_model extends CI_Model {
-    protected $table = 'users';
+class Login_model extends CI_Model { // TODO este model é desnecessário passar isto para o funcionario model
+    protected $table = 'funcionario'; 
     protected $phpass;
     public function initialize($p){
         $this->phpass = $p;
@@ -19,6 +19,9 @@ class Login_model extends CI_Model {
     }
     public function checkPassword($password,$hashedPassword){ 
         return $this->phpass->CheckPassword($password,$hashedPassword);
+    }
+    public function crypt_password($p){
+        return $this->phpass->HashPassword($p);
     }
     public function isLoggedIn(){
         $logged_in = $this->session->userdata('logged_in');
