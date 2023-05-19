@@ -7,6 +7,7 @@ class FileLoader {
     function __construct(){
         $loader = new Mustache_Loader_FilesystemLoader('./templates');
         $this->m = new Mustache_Engine(['loader' => $loader]);
+        // TODO NEEDS ITS OWN CONFIG FILE NIG
         $this->config = array(
             'menu' => array(
                 'menuRoutes' => array(
@@ -23,10 +24,10 @@ class FileLoader {
             ),
         );
     }
-    public function loadView($view,$values,$menuVisible = TRUE){ // TODO cheka isto bro
+    public function loadView($view,$values = null,$menuVisible = TRUE){ // TODO cheka isto bro
         $headerValues = array(
-            'css' => $values['css'],
-            'title' => $values['title'],
+            'css' => $values && array_key_exists('css',$values) ? $values['css'] : base_url("resources/css/".strtolower($view).".css"),
+            'title' => $values && array_key_exists('title',$values) ? $values['title'] : $view,
         );
         echo $this->m->render('common/header',$headerValues);
 

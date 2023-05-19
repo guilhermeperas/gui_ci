@@ -6,7 +6,7 @@ class Utentes_model extends MY_Model {
 		parent::__construct();
 		$this->table = 'utente';
 	}
-	public function getNameCidade(){
+	public function getNotLoggedInList(){
 		$this->db->select('morada.nome AS morada, utente.nome AS nome');
 		$this->db->from('utente');
 		$this->db->join('morada', 'morada.id = utente.id_morada', 'inner');
