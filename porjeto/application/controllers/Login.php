@@ -5,7 +5,7 @@ class Login extends CI_Controller {
 	private $data;
 	function __construct(){
 		parent::__construct();
-        $this->load->library(array('form_validation','session','passwordhash')); // se der error checka o nome da classe passwordjash
+        $this->load->library(array('form_validation','passwordhash')); // se der error checka o nome da classe passwordjash
         $this->passwordhash->initialize(8,false);
 		$this->load->model('login_model');
         $this->login_model->initialize($this->passwordhash);
@@ -40,6 +40,6 @@ class Login extends CI_Controller {
 	public function logout(){
 		$this->session->destroy(); 
 		$this->data['logout_sucess'] = 'logout com sucesso!!!';
-		$this->load->view('login',$this->data);
+		$this->fileloader->loadView('Login',$this->data,false);
 	}
 }
