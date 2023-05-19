@@ -27,8 +27,11 @@ class Listas extends CI_Controller { // TODO este controler precisa de olhos
 		$data = array(
 			'title' => 'Lista de '.$list,
 			'css' => base_url("resources/css/listas.css"),
+
 		);
-		$data['l'.$list] = $this->{$list . '_model'}->getNotLoggedInList();
+		$data['list'] = $this->{$list . '_model'}->getNotLoggedInList();
+		$data['heards'] = get_object_vars($data['list'][0]);
+		print_r(array_keys($data['heards'])); // FAZER ESTA CENA PRIMEIRO MONMGOLOIDE DE MERDA
 		$this->fileloader->loadView('l'.$list,$data);
 	}
 }
