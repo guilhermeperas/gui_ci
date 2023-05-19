@@ -4,11 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Enfermeiros_model extends MY_Model {
 	function __construct(){
 		parent::__construct();
-		$this->table = 'funcionario';
+		$this->table = 'enfermeiro';
 	}
 	public function getNotLoggedInList(){
 		$this->db->select('nome, especialidade');
-		$query = $this->db->get_where($this->table, array('profissao' => FALSE));
+		$query = $this->db->get($this->table);
 		return $query->result();
 	}
 }
