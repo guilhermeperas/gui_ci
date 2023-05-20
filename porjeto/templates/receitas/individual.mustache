@@ -1,0 +1,32 @@
+<div class="container">
+    {{#receita}}
+        <div class="miniContainer">
+            <p class="title">Data da consulta:</h2>
+            <p class="subtitle">{{data}}</p>
+        </div>
+        <div class="miniContainer">
+            <p class="title">Estado:</h2>
+            <p class="subtitle">{{estado}}</p>
+        </div>
+        <div class="miniContainer">
+            <p class="title">Cuidado:</h2>
+            <p class="subtitle">{{cuidado}}</p>
+        </div>
+        <div class="miniContainer">
+            <p class="title">Utente:</h2>
+            <p class="subtitle">{{utente}}</p>
+        </div>
+        <div class="miniContainer">
+            <p class="title">Medico:</h2>
+            <p class="subtitle">{{medico}}</p>
+        </div>
+        <div class="miniContainer">
+            <p class="title">Receita:</h2>
+            <p class="subtitle">{{receita}}</p>
+        </div>
+        <div class="miniContainer">
+        <a class="download-button" href='{{url}}downloadReceita/{{id}}'>Download</a>
+        <a class="download-button" href='{{url}}sendEmail/{{id}}'>Enviar por email.</a>
+        </div>
+    {{/receita}}
+</div>

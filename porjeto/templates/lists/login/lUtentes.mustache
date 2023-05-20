@@ -2,17 +2,22 @@
     <table>
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Age</th>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>nUtente</th>
+            <th>Morada</th>
         </tr>
         </thead>
         <tbody>
         {{#list}}
             <tr>
+                <td>{{id}}</td>
                 <td>{{nome}}</td>
-                <td>{{especialidade}}</td>
+                <td>{{nUtente}}</td>
+                <td>{{morada}}</td>
             </tr>
         {{/list}}
         </tbody>
     </table>
+     <p>{{{links}}}</p>
 </div>

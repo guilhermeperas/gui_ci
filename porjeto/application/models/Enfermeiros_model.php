@@ -11,4 +11,10 @@ class Enfermeiros_model extends MY_Model {
 		$query = $this->db->get($this->table);
 		return $query->result();
 	}
+	public function getLoggedInList(){
+		$this->db->select('enfermeiro.*, morada.nome AS morada');
+		$this->db->join('morada', 'morada.id = enfermeiro.id_morada', 'inner');
+		$query = $this->db->get($this->table);
+		return $query->result();
+	}
 }

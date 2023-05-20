@@ -13,4 +13,10 @@ class Utentes_model extends MY_Model {
 		$query = $this->db->get();
 		return $query->result();
 	}
+	public function getLoggedInList(){
+		$this->db->select('utente.*, morada.nome AS morada');
+		$this->db->join('morada', 'morada.id = utente.id_morada', 'inner');
+		$query = $this->db->get($this->table);
+		return $query->result();
+	}
 }

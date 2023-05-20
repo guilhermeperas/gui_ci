@@ -39,7 +39,7 @@ class Login_model extends CI_Model {
         return false;
     }
     public function getByType($id,$type){ // todo usar o values e fazer classe abstrata com esta func
-        $this->db->select($type.'.*,'.$this->table.'.tipo');
+        $this->db->select($type.'.*,'.'user.tipo,user.email');
         $this->db->join($this->table, $type.'.id = user.user_id', 'inner');
         $query = $this->db->get_where($type, array('id' => $id,'tipo' => $type));
         return $query->result();

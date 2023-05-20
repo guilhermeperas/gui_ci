@@ -26,7 +26,8 @@ class FileLoader {
     }
     public function loadView($view,$values = null,$menuVisible = TRUE){ // TODO cheka isto bro
         $headerValues = array(
-            'css' => $values && array_key_exists('css',$values) ? $values['css'] : base_url("resources/css/".strtolower($view).".css"),
+            'main_css' =>base_url("resources/css/main.css"),
+            'css' => $values && array_key_exists('css',$values) ? $values['css'] : null,
             'title' => $values && array_key_exists('title',$values) ? $values['title'] : $view,
         );
         echo $this->m->render('common/header',$headerValues);

@@ -7,6 +7,8 @@ class Home extends CI_Controller {
 	}
 	public function index()
 	{
-		$this->fileloader->loadView('HomePage');
+		$this->data['css'] = base_url("resources/css/homepage.css");
+		$this->data['title'] = 'Home';
+		$this->fileloader->loadView('HomePage',$this->data);
 	}
 }

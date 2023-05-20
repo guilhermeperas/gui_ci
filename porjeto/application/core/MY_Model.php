@@ -14,6 +14,9 @@ class MY_Model extends CI_Model {
 			// insert(table, data)
 		return $this->db->insert($this->table, $data);
 	}
+	public function get_count(){
+        return $this->db->count_all($this->table);
+    }
 	// return array
 	function GetById($id) {
 		if(is_null($id))

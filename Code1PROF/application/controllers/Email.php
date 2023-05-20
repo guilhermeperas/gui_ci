@@ -15,12 +15,12 @@ class Email extends CI_Controller {
 	public function index(){
     	$this->load->view('email');
 	}
-    public function send(){
+    public function send($to,$subj,$msg){
         // $this->input->post
         // o prof recomenda fazer um try catch aqui, para usarmos o mailer interno e o externo caso o interno falhe usamos o externo
-        $this->Instance($this->input->post('to'),$this->input->post('msg'),$this->input->post('subj'));
+        $this->Instance($to,$subj,$msg);
     }
-    public function Instance($to,$subj,$msg){
+    private function Instance($to,$subj,$msg){
         $mail = new PHPMailer(true);
         try {
             // config do mail

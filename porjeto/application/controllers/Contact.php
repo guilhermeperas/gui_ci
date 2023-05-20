@@ -9,12 +9,13 @@ class Contact extends CI_Controller { // TODO PRECISA DE TABELA NA NEW DB
 	}
 	public function index()
 	{
-		$data = array(
+		$this->data = array(
 			'title' => 'Contact us!',
+			'css' => base_url("resources/css/contact.css"),
 			'nome' => $this->session->userdata('nome'),
 			'action' => base_url('sendContact'),
 		);
-		$this->fileloader->loadView('Contact',$data,false);
+		$this->fileloader->loadView('Contact',$this->data,false);
 	}
 	public function sendContact(){ // TODO NEEDS CHECKING BRO
 		$this->form_validation->set_rules('name','Nome','required');

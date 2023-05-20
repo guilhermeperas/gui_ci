@@ -1,8 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login extends CI_Controller {
-	private $data;
+class Login extends MY_Controller {
 	function __construct(){
 		parent::__construct();
         $this->load->library(array('form_validation','passwordhash')); // se der error checka o nome da classe passwordjash
@@ -11,6 +10,7 @@ class Login extends CI_Controller {
         $this->login_model->initialize($this->passwordhash);
 		$this->data = array(
 			'action' => base_url('log_in'),
+			'css' => base_url("resources/css/login.css"),
 		);
 
 	}

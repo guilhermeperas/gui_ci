@@ -11,4 +11,10 @@ class Medicos_model extends MY_Model {
 		$query = $this->db->get($this->table);
 		return $query->result();
 	}
+	public function getLoggedInList(){
+		$this->db->select('medico.*, morada.nome AS morada');
+		$this->db->join('morada', 'morada.id = medico.id_morada', 'inner');
+		$query = $this->db->get($this->table);
+		return $query->result();
+	}
 }

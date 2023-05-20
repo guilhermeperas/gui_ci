@@ -1,0 +1,33 @@
+<div class="container">
+    <h1>Consultas de hoje</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Data</th>
+            <th>Medico</th>
+            <th>Utente</th>
+            <th>Receita</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#list}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{data}}</td>
+                <td>{{medico}}</td>
+                <td>{{utente}}</td>
+                <td>
+                {{#receita}}
+                    <a href="{{receita_url}}/{{receita}}">Receita</a>
+                {{/receita}}
+                {{^receita}}
+                    Nao ha
+                {{/receita}}
+                </td>
+            </tr>
+        {{/list}}
+        </tbody>
+    </table>
+     <p>{{{links}}}</p>
+</div>

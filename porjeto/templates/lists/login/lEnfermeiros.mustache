@@ -1,0 +1,27 @@
+<div class="container">
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>NIF</th>
+            <th>IBAN</th>
+            <th>Especialidade</th>
+            <th>Morada</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#list}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{nome}}</td>
+                <td>{{nif}}</td>
+                <td>{{iban}}</td>
+                <td>{{especialidade}}</td>
+                <td>{{morada}}</td>
+            </tr>
+        {{/list}}
+        </tbody>
+    </table>
+     <p>{{{links}}}</p>
+</div>

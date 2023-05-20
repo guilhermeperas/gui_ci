@@ -13,7 +13,6 @@
                         <tr>
                             <th>ID</th>
                             <th>first</th>
-                            <th>last</th>
                             <th>email</th>
                         </tr>
                     </thead>
@@ -21,8 +20,7 @@
                         <?foreach($clientes as $cliente):?>
                             <tr>
                                 <td><?=$cliente->id?></td>
-                                <td><?=$cliente->first_name?></td>
-                                <td><?=$cliente->last_name?></td>
+                                <td><?=$cliente->nome?></td>
                                 <td><?=$cliente->email?></td>
                             </tr>
                         <?endforeach;?>
