@@ -31,7 +31,8 @@ class Login extends CI_Controller {
 			if($user = $this->login_model->getByUsername($username))
 				if($this->login_model->checkPassword($password,$user['password'])){
 					$this->login_model->createSession($user);
-					$this->fileloader->loadView('Profile',array('teste' => print_r($this->session->userdata('user'))));
+					redirect(base_url().'homepage');
+					return;
 				}
 		}
 		$this->data['error'] = 'Dados inválidos';
