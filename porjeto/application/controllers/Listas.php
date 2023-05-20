@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Listas extends CI_Controller { // TODO este controler precisa de olhos
+class Listas extends MY_Controller { // TODO este controler precisa de olhos
 	function __construct(){
 		parent::__construct();
 		$this->load->library('pagination');

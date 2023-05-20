@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Contact extends CI_Controller { // TODO PRECISA DE TABELA NA NEW DB
+class Contact extends MY_Controller { // TODO PRECISA DE TABELA NA NEW DB
 	function __construct(){
 		parent::__construct();
 		$this->load->library('form_validation');
