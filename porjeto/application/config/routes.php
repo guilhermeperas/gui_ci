@@ -56,15 +56,16 @@ $route['homepage'] = 'Home/index';
 $route['medicos'] = "listas/index"; 
 $route['enfermeiros'] = "listas/index";
 $route['utentes'] = "listas/index";
-
 $route['consultas'] = "listas/index";
 
+$route['backoffice'] = "backoffice/index";
 // testing
 $route['receita/(:num)?'] = "receitas/individual/$1";
 $route['receita'] = "receitas/individual";
 //download receita
 $route['downloadReceita/(:num)?'] = "receitas/downloadReceita/$1";
 $route['sendEmail/(:num)?'] = "receitas/enviarEmail/$1";
+
 
 $route['log_in'] = 'login/login';
 $route['login'] = 'login/index';

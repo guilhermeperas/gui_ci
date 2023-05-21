@@ -17,7 +17,7 @@ class Login extends MY_Controller {
 	public function index()
 	{
 		if($this->login_model->isLoggedIn()){
-			redirect('profile');
+			redirect(base_url('backoffice'));
 			return;
 		}
 		$this->fileloader->loadView('Login',$this->data,false);

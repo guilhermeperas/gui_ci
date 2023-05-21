@@ -6,11 +6,11 @@ define('ADMIN_NAME','Guilherme Pereira');
 define('PASSWORD','rsayaefhqahptbkq');
 class Mymailer {
     private $mail;
-    protected $CI;
+    // protected $CI;/
 
     function __construct(){
         $this->mail = new PHPMailer(true);
-        $this->CI = &get_instance();
+        // $this->CI = &get_instance();
     }
     public function send($to,$subj,$msg){
         // try{

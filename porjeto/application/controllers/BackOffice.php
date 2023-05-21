@@ -7,5 +7,8 @@ class BackOffice extends MY_Controller {
 	}
 	public function index()
 	{
+		$this->data['css'] = base_url("resources/css/backoffice.css");
+		$this->data['title'] = 'Backoffice';
+		$this->fileloader->loadView('Backoffice',$this->data,false);
 	}
 }

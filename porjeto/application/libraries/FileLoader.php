@@ -21,11 +21,6 @@ class FileLoader {
         );
         echo $this->m->render('common/header',$headerValues);
 
-        if($this->ci->session->userdata('logged_in'))
-            array_push($this->ci->config->config['menu']['menuRoutes'],array('name' => 'BackOffice','path' => base_url('BackOffice')));
-        else
-            array_push($this->ci->config->config['menu']['menuRoutes'],array('name' => 'Login','path' => base_url('Login')));
-            
         if($menuVisible)
             echo $this->m->render('common/menu',$this->ci->config->config['menu']);
 
