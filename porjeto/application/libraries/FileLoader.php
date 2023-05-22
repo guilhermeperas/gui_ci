@@ -21,12 +21,20 @@ class FileLoader {
         );
         echo $this->m->render('common/header',$headerValues);
 
-        if($menuVisible)
-            echo $this->m->render('common/menu',$this->ci->config->config['menu']);
+        echo $this->m->render('common/menu',$this->ci->config->config['menu']);
 
         echo $this->m->render($view,$values);
         
-        if($menuVisible)
-            echo $this->m->render('common/footer',$this->ci->config->config['footer']);
+        echo $this->m->render('common/footer',$this->ci->config->config['footer']);
+    }
+    public function singleView($view,$data){
+        $headerValues = array(
+            'main_css' =>base_url("resources/css/main.css"),
+            'css' => $data && array_key_exists('css',$data) ? $data['css'] : null,
+            'title' => $data && array_key_exists('title',$data) ? $data['title'] : $view,
+        );
+        echo $this->m->render('common/header',$headerValues);
+
+        echo $this->m->render($view,$data);
     }
 }

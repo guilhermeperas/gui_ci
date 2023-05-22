@@ -69,6 +69,7 @@ $route['sendEmail/(:num)?'] = "receitas/enviarEmail/$1";
 
 $route['log_in'] = 'login/login';
 $route['login'] = 'login/index';
+$route['logout'] = 'login/logout';
 
 $route['contact'] = 'contact/index';
 $route['sendContact'] = 'contact/sendContact';

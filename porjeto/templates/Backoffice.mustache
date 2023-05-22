@@ -1,15 +1,15 @@
+
+<body>
 <div class="container">
   <div class="sidebar">
     <ul class="sidebar-menu">
-      <li><a href="#">Medicos</a></li>
-      <li><a href="#">Enfermeiros</a></li>
-      <li><a href="#">Utentes</a></li>
-      <li><a href="#">Consultas</a></li>
-      <li><a href="#">Receitas</a></li>
-      <li><a href="#">Produtos</a></li>
-      <li><a href="#">Logout</a></li>
+      {{#menuRoutes}}
+        <li><a href="{{path}}">{{name}}</a></li>
+      {{/menuRoutes}}
     </ul>
   </div>
   <div class="content">
+    
   </div>
 </div>
+</body>

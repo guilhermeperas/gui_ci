@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Enfermeiros extends MY_Controller { // criar classe abstrata para uma classe que use o paginador
+class Enfermeiros extends MY_Controller { 
     function __construct(){
         parent::__construct();
         $this->load->model('enfermeiros_model');

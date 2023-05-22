@@ -28,6 +28,6 @@ class MY_Controller extends CI_Controller {
             return;
         }
         $this->data["list"] = $this->{$name . '_model'}->getNotLoggedInList();
-        $this->fileloader->loadView('lists/logoff/'.$name,$this->data);
+        $this->fileloader->loadView('lists/logoff/l'.$name,$this->data);
     }
 }

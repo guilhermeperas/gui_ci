@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Contact extends MY_Controller { // TODO PRECISA DE TABELA NA NEW DB
+class Contact extends MY_Controller { 
 	function __construct(){
 		parent::__construct();
 		$this->load->library('form_validation');
@@ -15,6 +15,10 @@ class Contact extends MY_Controller { // TODO PRECISA DE TABELA NA NEW DB
 			'nome' => $this->session->userdata('nome'),
 			'action' => base_url('sendContact'),
 		);
+		if($this->session->userdata('logged_in')){
+			$user = $this->session->userdata('user');
+			$this->data['nome'] = $user[0]->nome;
+		}
 		$this->fileloader->loadView('Contact',$this->data,false);
 	}
 	public function sendContact(){ // TODO NEEDS CHECKING BRO

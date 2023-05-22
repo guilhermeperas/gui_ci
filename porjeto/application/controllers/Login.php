@@ -20,7 +20,7 @@ class Login extends MY_Controller {
 			redirect(base_url('backoffice'));
 			return;
 		}
-		$this->fileloader->loadView('Login',$this->data,false);
+		$this->fileloader->singleView('Login',$this->data,false);
 	}
 	public function login(){
 		$this->form_validation->set_rules('username','user','required');
@@ -36,11 +36,11 @@ class Login extends MY_Controller {
 				}
 		}
 		$this->data['error'] = 'Dados inválidos';
-		$this->fileloader->loadView('Login',$this->data,false);
+		$this->fileloader->singleView('Login',$this->data,false);
 	}
 	public function logout(){
-		$this->session->destroy(); 
+		$this->session->sess_destroy();
 		$this->data['logout_sucess'] = 'logout com sucesso!!!';
-		$this->fileloader->loadView('Login',$this->data,false);
+		$this->fileloader->singleView('Login',$this->data);
 	}
 }
