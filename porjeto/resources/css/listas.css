@@ -19,5 +19,28 @@ tr:hover {
   background-color: #f5f5f5;
 }
 .links {
-  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.links a,
+.links strong {
+  display: inline-block;
+  padding: 8px 12px;
+  margin-right: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  text-decoration: none;
+  color: #333;
+}
+
+.links a:hover {
+  background-color: #f0f0f0;
+}
+
+.links strong {
+  background-color: #ccc;
+  color: #fff;
 }

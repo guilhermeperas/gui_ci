@@ -12,7 +12,7 @@ class Utentes extends MY_Controller { // criar classe abstrata para uma classe q
         $this->data['css'] = base_url("resources/css/listas.css");
 
         $config["base_url"] = base_url()."utentes";
-        $config["per_page"] = 2;
+        $config["per_page"] = 4;
         $config["total_rows"] = $this->utentes_model->get_count();
 
         $this->initialize($config);
