@@ -58,7 +58,14 @@ $route['enfermeiros/(:num)'] = "enfermeiros/index";
 $route['utentes/(:num)'] = "utentes/index";
 $route['consultas/(:num)'] = "consultas/index";
 
-$route['backoffice'] = "backoffice/index";
+$route['backoffice/medicos'] = 'medicos/backoffice';
+$route['backoffice/enfermeiros'] = 'enfermeiros/backoffice';
+$route['backoffice/utentes'] = 'utentes/backoffice';
+$route['backoffice/users'] = 'users/backoffice';
+$route['backoffice/consultas'] = 'consultas/backoffice';
+$route['backoffice/receitas'] = 'receitas/backoffice';
+$route['backoffice/produtos'] = 'produtos/backoffice';
+
 // testing
 $route['receita/(:num)?'] = "receitas/individual/$1";
 $route['receita'] = "receitas/individual";
