@@ -6,8 +6,7 @@ class Medicos_model extends MY_Model {
 		parent::__construct();
 		$this->table = 'medico';
 	}
-	public function getNotLoggedInList($limit,$start){
-		$this->db->limit(1,$start);
+	public function getNotLoggedInList(){
 		$this->db->select('nome, especialidade');
 		$query = $this->db->get($this->table);
 		return $query->result();

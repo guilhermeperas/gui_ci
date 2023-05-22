@@ -6,7 +6,28 @@ class MY_Controller extends CI_Controller {
         'css' => null,
         'title' => null,
     );
+    private $page;
+    private $per_page;
 	function __construct(){
 		parent::__construct();
 	}
+    protected function initialize($config){
+        $this->load->library('pagination');
+        $this->per_page = $config["per_page"];
+        $this->pagination->initialize($config);
+
+        $this->page = ($this->uri->segment(2) ? $this->uri->segment(2) : 0); // variavel big boy $this
+        $this->data["links"] = $this->pagination->create_links();
+    }
+    protected function loadLista($name,$logged_in){
+        $this->data['css'] = base_url("resources/css/listas.css");
+        $this->{$name . '_model'}->initialize($this->per_page , $this->page);
+        if($this->session->userdata('logged_in')){
+            $this->data["list"] = $this->{$name . '_model'}->getLoggedInList();
+            $this->fileloader->loadView('lists/login/l'.$name,$this->data);
+            return;
+        }
+        $this->data["list"] = $this->{$name . '_model'}->getNotLoggedInList();
+        $this->fileloader->loadView('lists/logoff/'.$name,$this->data);
+    }
 }

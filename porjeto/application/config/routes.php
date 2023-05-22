@@ -53,10 +53,10 @@ $route['default_controller'] = 'Home';
 
 $route['homepage'] = 'Home/index';
 
-$route['medicos'] = "listas/index"; 
-$route['enfermeiros'] = "listas/index";
-$route['utentes'] = "listas/index";
-$route['consultas'] = "listas/index";
+$route['medicos/(:num)'] = "medicos/index"; 
+$route['enfermeiros/(:num)'] = "enfermeiros/index";
+$route['utentes/(:num)'] = "utentes/index";
+$route['consultas/(:num)'] = "consultas/index";
 
 $route['backoffice'] = "backoffice/index";
 // testing

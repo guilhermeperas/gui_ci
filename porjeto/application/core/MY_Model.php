@@ -8,6 +8,9 @@ class MY_Model extends CI_Model {
 		parent::__construct();
 	}
 	// return boolean rec. array
+	public function initialize($limit,$start){
+		$this->db->limit($limit,$start);
+	}
 	public function Insert($data){
 		if(!isset($data))
 			return false;
