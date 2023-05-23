@@ -25,7 +25,7 @@ class Login extends MY_Controller {
 	public function login(){
 		$this->form_validation->set_rules('username','user','required');
 		$this->form_validation->set_rules('password','senha','required');
-		if($this->form_validation->run()){
+		if($this->form_validation->run() && !empty($this->input->post())){
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
 			if($user = $this->login_model->getByUsername($username))

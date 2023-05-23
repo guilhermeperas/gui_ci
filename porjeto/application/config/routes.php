@@ -61,7 +61,10 @@ $route['consultas/(:num)'] = "consultas/index";
 $route['backoffice/medicos'] = 'medicos/backoffice';
 $route['backoffice/enfermeiros'] = 'enfermeiros/backoffice';
 $route['backoffice/utentes'] = 'utentes/backoffice';
+
 $route['backoffice/users'] = 'users/backoffice';
+$route['backoffice/users/editUser/(:num)?'] = 'users/editUser';
+
 $route['backoffice/consultas'] = 'consultas/backoffice';
 $route['backoffice/receitas'] = 'receitas/backoffice';
 $route['backoffice/produtos'] = 'produtos/backoffice';

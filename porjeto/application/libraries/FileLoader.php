@@ -13,7 +13,7 @@ class FileLoader {
         $this->ci->config->load('fileLoader');
         // mt estranho
     }
-    public function loadView($view,$values = null,$menuVisible = TRUE){ // TODO cheka isto bro
+    public function loadView($view,$values = null){ 
         $headerValues = array(
             'main_css' =>base_url("resources/css/main.css"),
             'css' => $values && array_key_exists('css',$values) ? $values['css'] : null,
@@ -27,7 +27,7 @@ class FileLoader {
         
         echo $this->m->render('common/footer',$this->ci->config->config['footer']);
     }
-    public function singleView($view,$data){
+    public function singleView($view,$data = null){
         $headerValues = array(
             'main_css' =>base_url("resources/css/main.css"),
             'css' => $data && array_key_exists('css',$data) ? $data['css'] : null,
