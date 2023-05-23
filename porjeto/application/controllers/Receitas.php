@@ -6,6 +6,7 @@ class Receitas extends MY_Controller {
 		parent::__construct();
 		$this->load->model('receitas_model');
 		$this->data['css'] = base_url("resources/css/receitas.css");
+		$this->data['user'] = $this->session->userdata('user');
 	}
 	public function backOffice()
 	{
@@ -13,6 +14,7 @@ class Receitas extends MY_Controller {
 			redirect(base_url().'login');
 			return;
 		}
+		$this->fileloader->loadBackOfficeView('backoffice/receitas',$this->data,$this->data['user']['tipo']);
 	}
 	public function individual(){ 
 		if(!$this->uri->segment(2))
