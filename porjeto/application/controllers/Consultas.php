@@ -12,8 +12,7 @@ class Consultas extends MY_Controller {
         $this->data['receita_url'] = base_url('receita');
         $config["base_url"] = base_url()."consultas";
         $config["per_page"] = 1;
-        $config["total_rows"] = $this->consultas_model->get_count();
-
+        $config["total_rows"] = !$this->session->userdata('logged_in') ? $this->consultas_model->get_todays_consultas_count() :  $this->consultas_model->get_count();
         $this->initialize($config);
 
         $this->loadLista('consultas',$this->session->userdata('logged_in'));

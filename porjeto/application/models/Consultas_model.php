@@ -6,6 +6,12 @@ class Consultas_model extends MY_Model {
 		parent::__construct();
 		$this->table = 'consulta';
 	}
+	public function get_todays_consultas_count(){
+		$this->db->from($this->table);
+		$this->db->where('data',date("Y/m/d"));
+		return $this->db->count_all_results();
+	}
+	
 	public function getNotLoggedInList(){
 		$this->db->select('medico.nome AS medico, utente.nome AS utente');
 		$this->db->join('medico', 'medico.id = consulta.id_medico', 'inner');

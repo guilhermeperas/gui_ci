@@ -26,7 +26,6 @@ class Login_model extends CI_Model {
     public function isLoggedIn(){
         $logged_in = $this->session->userdata('logged_in');
         $user = $this->session->userdata('user');
-        print_r($user);
         if($logged_in == TRUE){
             $this->createSession(
                 array(
@@ -38,7 +37,7 @@ class Login_model extends CI_Model {
         }
         return false;
     }
-    public function getByType($id,$type){ // todo usar o values e fazer classe abstrata com esta func
+    public function getByType($id,$type){ 
         $this->db->select($type.'.*,'.'user.tipo,user.email');
         $this->db->join($this->table, $type.'.id = user.user_id', 'inner');
         $query = $this->db->get_where($type, array('id' => $id,'tipo' => $type));
