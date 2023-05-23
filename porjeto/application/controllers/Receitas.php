@@ -7,8 +7,12 @@ class Receitas extends MY_Controller {
 		$this->load->model('receitas_model');
 		$this->data['css'] = base_url("resources/css/receitas.css");
 	}
-	public function index()
+	public function backOffice()
 	{
+		if(!$this->session->userdata('logged_in')){
+			redirect(base_url().'login');
+			return;
+		}
 	}
 	public function individual(){ 
 		if(!$this->uri->segment(2))
@@ -22,6 +26,7 @@ class Receitas extends MY_Controller {
 			$this->fileloader->loadView('receitas/individual',$this->data);
 			return;
 		}		
+		$this->data['produtos'] = $this->receitas_model->getProdutosReceita($receita['id']);
 		$this->data['title'] = 'Receita individual';
 		$this->data['url'] = base_url('');
 		$this->data['receita'] = $receita;
@@ -31,10 +36,10 @@ class Receitas extends MY_Controller {
 	public function downloadReceita(){
 		$id = $this->uri->segment(2);
 		$receita = $this->receitas_model->getReceitaData($id);
+		$produto = $this->receitas_model->getProdutosReceita($id);
 		if(empty($receita))
 			return;
 		$this->load->helper('download');
-		// todo talvez usar library para criar pdf file idk
 		$name = "receita.txt";
 		$data = 
 			"Data da consulta: ".$receita['data']." 
@@ -42,8 +47,13 @@ class Receitas extends MY_Controller {
 			Cuidado: ".$receita['cuidado']."
 			Utente: ".$receita['utente']."
 			Medico: ".$receita['medico']."
-			Receita: ".$receita['receita']."
-			";
+			Receita: ".$receita['receita'];
+		// TODO check this 
+		foreach($produtos as $produto){
+			$data .= 
+			"Produto: ".$produto->nome."
+			Produto: ".$produto->value;
+		}
 		force_download($name,$data);
 	}
 	public function enviarEmail(){
@@ -76,9 +86,8 @@ class Receitas extends MY_Controller {
 		</body>
 		</html>
 			";
-		if($this->mymailer->send($user[0]->email,"Receita",$msg)){
-			echo"teste";
-			redirect('homepage'); // mandar aviso que foi enviado
+		if(!$this->mymailer->send($user['email'],"Receita",$msg)){ // ?
+			redirect(base_url().'homepage'); 
 		}
 	}
 }

@@ -36,7 +36,7 @@ class Mymailer {
             $mail = new PHPMailer(true);
             try {
                 // config do mail
-                $mail->SMTPDebug = 3;
+                $mail->SMTPDebug = 0;
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com'; // dominio aqui
                 $mail->SMTPAuth = true;

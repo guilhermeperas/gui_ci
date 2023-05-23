@@ -24,6 +24,14 @@
             <p class="title">Receita:</h2>
             <p class="subtitle">{{receita}}</p>
         </div>
+        {{#produtos}}
+            <div class="miniContainer">
+                <p class="title">Produto:</h2>
+                <p class="subtitle">{{nome}}</p>
+                <p class="title">Preco:</h2>
+                <p class="subtitle">{{value}}</p>
+            </div>
+        {{/produtos}}
         <div class="miniContainer">
             <a class="download-button" href='{{url}}downloadReceita/{{id}}'>Download</a>
             <a class="download-button" href='{{url}}sendEmail/{{id}}'>Enviar por email.</a>

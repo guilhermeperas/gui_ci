@@ -21,7 +21,7 @@ abstract class MY_Controller extends CI_Controller {
     }
     protected function loadLista($name,$logged_in){
         $this->data['css'] = base_url("resources/css/listas.css");
-        $this->{$name . '_model'}->initialize($this->per_page , $this->page);
+        $this->{$name . '_model'}->initializeLimit($this->per_page , $this->page);
         if($this->session->userdata('logged_in')){
             $this->data["list"] = $this->{$name . '_model'}->getLoggedInList();
             $this->fileloader->loadView('lists/login/l'.$name,$this->data);
