@@ -8,7 +8,7 @@ $config = array(
                     array('name' => 'Utentes','path' => base_url('utentes')),
                     array('name' => 'Enfermeiros','path' => base_url('enfermeiros')),
                     array('name' => 'Consultas','path' => base_url('consultas')),
-                    array('name' => 'Login','path' => base_url('Login')),
+                    array('name' => 'Login','path' => base_url('login')),
                 ),
             ),
             'footer' => array(

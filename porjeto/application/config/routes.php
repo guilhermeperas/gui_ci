@@ -62,8 +62,11 @@ $route['backoffice/medicos'] = 'medicos/backoffice';
 $route['backoffice/enfermeiros'] = 'enfermeiros/backoffice';
 $route['backoffice/utentes'] = 'utentes/backoffice';
 
+$route['log_in'] = 'users/login';
+$route['login'] = 'users/index';
+$route['logout'] = 'users/logout';
 $route['backoffice/users'] = 'users/backoffice';
-$route['backoffice/users/editUser/(:num)?'] = 'users/editUser';
+$route['backoffice/users/editUser/(:num)?/(:any)?'] = 'users/editUser';
 
 $route['backoffice/consultas'] = 'consultas/backoffice';
 $route['backoffice/receitas'] = 'receitas/backoffice';
@@ -77,9 +80,6 @@ $route['downloadReceita/(:num)?'] = "receitas/downloadReceita/$1";
 $route['sendEmail/(:num)?'] = "receitas/enviarEmail/$1";
 
 
-$route['log_in'] = 'login/login';
-$route['login'] = 'login/index';
-$route['logout'] = 'login/logout';
 
 $route['contact'] = 'contact/index';
 $route['sendContact'] = 'contact/sendContact';

@@ -8,7 +8,7 @@ class MY_Model extends CI_Model {
 		parent::__construct();
 	}
 	// return boolean rec. array
-	public function initialize($limit,$start){
+	public function initializeLimit($limit,$start){
 		$this->db->limit($limit,$start);
 	}
 	public function Insert($data){

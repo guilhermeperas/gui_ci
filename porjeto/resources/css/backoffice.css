@@ -10,6 +10,7 @@ body {
 
 .sidebar {
   width: 250px;
+  min-height: 100vh;
   background-color: #0f0e0e;
   position: relative;
 }
@@ -38,6 +39,16 @@ body {
   color: white;
 }
 
+.error {
+  color: red;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.sucess {
+  color: rgb(20, 214, 20);
+  font-weight: bold;
+  margin-bottom: 10px;
+}
 .sidebar-menu li a:hover {
   background-color: #ccc;
 }
