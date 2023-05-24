@@ -10,6 +10,7 @@ abstract class MY_Controller extends CI_Controller {
     private $per_page;
 	function __construct(){
 		parent::__construct();
+        $this->data['user'] = $this->session->userdata('user');
 	}
     protected function initialize($config){
         $this->load->library('pagination');

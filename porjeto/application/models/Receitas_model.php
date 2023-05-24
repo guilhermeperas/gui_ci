@@ -18,14 +18,4 @@ class Receitas_model extends MY_Model {
 		else
 			return null;
 	}
-	public function getProdutosReceita($id){
-		$this->db->select('produto.nome,produto.value');
-		$this->db->join('receita_produto', 'receita_produto.id_produto = produto.id', 'inner');
-		$this->db->where('receita_produto.id_receita', $id);
-		$query= $this->db->get('produto');
-		if ($query->num_rows() > 0)
-			return $query->result();
-		else
-			return null;
-	}
 }

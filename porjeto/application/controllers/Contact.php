@@ -12,12 +12,11 @@ class Contact extends MY_Controller {
 		$this->data = array(
 			'title' => 'Contact us!',
 			'css' => base_url("resources/css/contact.css"),
-			'nome' => $this->session->userdata('nome'),
 			'action' => base_url('sendContact'),
 		);
 		if($this->session->userdata('logged_in')){
 			$user = $this->session->userdata('user');
-			$this->data['nome'] = $user[0]->nome;
+			$this->data['nome'] = $user['nome'];
 		}
 		$this->fileloader->loadView('Contact',$this->data,false);
 	}

@@ -71,7 +71,12 @@ $route['backoffice/users/editUser/(:num)?/(:any)?'] = 'users/editUser';
 $route['backoffice/consultas'] = 'consultas/backoffice';
 $route['backoffice/receitas'] = 'receitas/backoffice';
 $route['editReceita/(:num)'] = 'receitas/editReceita/$1';
+
+$route['produtos/receita/(:num)'] = 'produtos/receita/$1';
 $route['backoffice/produtos'] = 'produtos/backoffice';
+$route['produtos/remover/(:num)/(:num)'] = 'receitaprodutos/removeProdutoFromReceita/$1/$2';
+$route['produtos/addProduto/(:num)'] = 'receitaprodutos/addProdutoToReceita/$1';
+
 
 // testing
 $route['receita/(:num)?'] = "receitas/individual/$1";

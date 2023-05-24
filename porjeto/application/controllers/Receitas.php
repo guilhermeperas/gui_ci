@@ -31,7 +31,6 @@ class Receitas extends MY_Controller {
 			$this->fileloader->loadView('receitas/individual',$this->data);
 			return;
 		}		
-		$this->data['produtos'] = $this->receitas_model->getProdutosReceita($receita['id']);
 		$this->data['title'] = 'Receita individual';
 		$this->data['url'] = base_url('');
 		$this->data['receita'] = $receita;
