@@ -10,7 +10,9 @@
             <th>Utente</th>
             <th>Receita</th>
             <th>Enfermeiro(s)</th>
-            <th>Edicao</th>
+            {{#hasPerms}}
+                <th>Edicao</th>
+            {{/hasPerms}}
         </tr>
         </thead>
         <tbody>
@@ -30,14 +32,18 @@
                 {{/receita}}
                 </td>
                 <td><a href="{{base_url}}enfermeiros/consulta/{{id}}">Enfermeiros</a></td>
+                {{#hasPerms}}
                 <td>
                     <a href="{{base_url}}consultas/edit/{{id}}">Editar</a>
                     <a href="{{base_url}}consultas/delete/{{id}}">Apagar</a>
                 </td>
+                {{/hasPerms}}
             </tr>
             {{/list}}
         </tbody>
     </table>
+    {{#hasPerms}}
         <a href="{{create_consulta}}">Criar Consulta</a>
+    {{/hasPerms}}
 
 </div>
