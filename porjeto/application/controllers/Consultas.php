@@ -24,7 +24,7 @@ class Consultas extends MY_Controller {
         $this->data['base_url'] = base_url();
 
         if($this->data['user']['tipo'] === 'utente'){
-            $this->data['list'] = $this->consultas_model->getUserConsultas($this->data['user']['id']);
+            $this->data['list'] = $this->consultas_model->getConsultas($this->data['user']['id']);
             $this->data['h1_text'] = 'As suas consultas';
         }else{
             $this->data['list'] = $this->consultas_model->getConsultas();

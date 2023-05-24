@@ -7,12 +7,15 @@ class Consultas_model extends MY_Model {
 		$this->table = 'consulta';
 	}
 
-	function getUserConsultas($id){
+	function getConsultas($where = null){
 		$this->db->select('consulta.id,consulta.data,consulta.estado,medico.nome AS medico, utente.nome AS utente,receita.id as receita');
 		$this->db->join('medico', 'medico.id = consulta.id_medico', 'inner');
 		$this->db->join('utente', 'utente.id = consulta.id_utente', 'inner');
 		$this->db->join('receita', 'receita.id = consulta.id_receita', 'left');
-		$query = $this->db->get_where($this->table, array('id_utente' => $id));
+		if(!is_null($where))
+			$query = $this->db->get_where($this->table, array('id_utente' => $id));
+		else
+			$query = $this->db->get($this->table);
 		return $query->result();
 	}
 	public function get_todays_consultas_count(){
