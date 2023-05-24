@@ -17,13 +17,5 @@
         </tbody>
     </table>
     {{/produtos}}
-    <form action={{form_action}} method="POST">
-        <label for="produto">Adicionar Produto:</label>
-        <select name-"produto" >
-            {{#allProducts}}
-                <option value={{id}}>{{nome}}</option>
-            {{/allProducts}}
-        </select>
-        <input type="submit" value="Submit">
-    </form>
+    <a href="{{addProduto}}">Adicionar Produto</a>
 </div>

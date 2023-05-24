@@ -54,13 +54,15 @@ $route['default_controller'] = 'Home';
 $route['homepage'] = 'Home/index';
 
 $route['medicos/(:num)'] = "medicos/index"; 
-$route['enfermeiros/(:num)'] = "enfermeiros/index";
 $route['utentes/(:num)'] = "utentes/index";
 $route['consultas/(:num)'] = "consultas/index";
 
 $route['backoffice/medicos'] = 'medicos/backoffice';
-$route['backoffice/enfermeiros'] = 'enfermeiros/backoffice';
 $route['backoffice/utentes'] = 'utentes/backoffice';
+
+$route['enfermeiros/(:num)'] = "enfermeiros/index";
+$route['backoffice/enfermeiros'] = 'enfermeiros/backoffice';
+$route['enfermeiros/consulta/(:num)'] = 'Enfermeiroconsultas/backoffice';
 
 $route['log_in'] = 'users/login';
 $route['login'] = 'users/index';
@@ -72,10 +74,13 @@ $route['backoffice/consultas'] = 'consultas/backoffice';
 $route['backoffice/receitas'] = 'receitas/backoffice';
 $route['editReceita/(:num)'] = 'receitas/editReceita/$1';
 
-$route['produtos/receita/(:num)'] = 'produtos/receita/$1';
 $route['backoffice/produtos'] = 'produtos/backoffice';
+
+$route['produtos/receita/(:num)'] = 'receitaprodutos/receita/$1';
 $route['produtos/remover/(:num)/(:num)'] = 'receitaprodutos/removeProdutoFromReceita/$1/$2';
 $route['produtos/addProduto/(:num)'] = 'receitaprodutos/addProdutoToReceita/$1';
+
+$route['produtos/produtoList/(:num)'] = 'produtos/produtoList/$1';
 
 
 // testing
