@@ -62,7 +62,10 @@ $route['backoffice/utentes'] = 'utentes/backoffice';
 
 $route['enfermeiros/(:num)'] = "enfermeiros/index";
 $route['backoffice/enfermeiros'] = 'enfermeiros/backoffice';
-$route['enfermeiros/consulta/(:num)'] = 'Enfermeiroconsultas/backoffice';
+$route['enfermeiros/consulta/(:num)'] = 'Enfermeiroconsultas/listEnfermeiro/$1';
+$route['enfermeiros/remover/(:num)/(:num)'] = 'Enfermeiroconsultas/removeEnfermeiroFromConsulta/$1/$2';
+$route['enfermeiros/addEnfermeiro/(:num)'] = 'Enfermeiroconsultas/addEnfermeiroToConsulta/$1';
+
 
 $route['log_in'] = 'users/login';
 $route['login'] = 'users/index';

@@ -1,0 +1,21 @@
+<div class="content">
+    {{#enfermeiros}}
+    <table>
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Especialidade</th>
+            <th>Remover</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{nome}}</td>
+                <td>{{especialidade}}</td>
+                <td><a href={{remover}}{{consulta_id}}/{{id}}>Remover</a></td>
+            </tr>
+        </tbody>
+    </table>
+    {{/enfermeiros}}
+    <a href="{{addEnfermeiro}}">Adicionar Enfermeiro</a>
+</div>

@@ -1,10 +1,10 @@
 <div class='container'>
     <form action={{form_action}} method="POST">
-        <label for="produto">Adicionar Produto:</label>
-        <select name-"produto" >
-            {{#allProducts}}
+        <label for="{{selectName}}">{{label}}:</label>
+        <select name-"{{selectName}}" >
+            {{#allList}}
                 <option value={{id}}>{{nome}}</option>
-            {{/allProducts}}
+            {{/allList}}
         </select>
         <input type="submit" value="Submit">
     </form>

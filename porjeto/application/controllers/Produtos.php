@@ -13,8 +13,10 @@ class Produtos extends MY_Controller {
 		$this->data['receita_id'] = $this->uri->segment(3);
 		if(is_null($this->data['receita_id']))
 			redirect(base_url().'consultas');
-		$this->data['allProducts'] = $this->produtos_model->GetAll();
+		$this->data['allList'] = $this->produtos_model->GetAll();
+		$this->data['label'] = 'Adicionar Produto';
+        $this->data['selectName'] = "produto";
 		$this->data['form_action'] =  base_url().'produtos/addProduto/'.$this->data['receita_id'];
-		$this->fileloader->loadView('produtos/add_produto',$this->data);
+		$this->fileloader->loadView('mixed/add_something',$this->data);
 	}
 }

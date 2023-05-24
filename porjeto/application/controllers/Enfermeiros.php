@@ -18,4 +18,17 @@ class Enfermeiros extends MY_Controller {
 
         $this->loadLista('enfermeiros',$this->session->userdata('logged_in'));
     }
+    function enfermeiroList(){
+		$this->data['title'] ='Adicionar Enfermeiro';
+		$this->data['css'] = base_url("resources/css/enfermeiros.css");
+		$this->data['consulta_id'] = $this->uri->segment(3);
+		if(is_null($this->data['consulta_id']))
+			redirect(base_url().'consultas');
+		$this->data['allList'] = $this->enfermeiros_model->GetAll();
+        $this->data['label'] = 'Adicionar Enfermeiro';
+        $this->data['selectName'] = "enfermeiro";
+		$this->data['form_action'] =  base_url().'enfermeiros/addEnfermeiro/'.$this->data['consulta_id'];
+		$this->fileloader->loadView('mixed/add_something',$this->data);
+
+	}
 }
