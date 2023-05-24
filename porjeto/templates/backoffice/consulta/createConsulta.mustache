@@ -1,0 +1,19 @@
+<div class="list">
+    <p>{{error}}</p>
+    <form action={{form_action}} method="POST">
+        <label for="medico">Medico:</label>
+        <select name="medico">
+            {{#medicoList}}
+                <option value={{id}}>{{nome}}</option>
+            {{/medicoList}}
+        </select>
+        <label for="utente">Utente:</label>
+        <select name="utente">
+            {{#utenteList}}
+                <option value={{id}}>{{nome}}</option>
+            {{/utenteList}}
+        </select>
+        <label for="data">Quando:</label>
+        <input type="date" id="data" name="data">
+        <input type="submit" value="Submit">
+</div>

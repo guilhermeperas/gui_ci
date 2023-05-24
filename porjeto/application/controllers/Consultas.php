@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Consultas extends MY_Controller { 
     function __construct(){
         parent::__construct();
+        $this->load->library('form_validation');
         $this->load->model('consultas_model');
     }
     
@@ -16,6 +17,30 @@ class Consultas extends MY_Controller {
         $this->initialize($config);
 
         $this->loadLista('consultas',$this->session->userdata('logged_in'));
+    }
+    public function createConsulta(){
+        $this->form_validation->set_rules('medico','Medico','required');
+		$this->form_validation->set_rules('utente','Utente','required');
+		$this->form_validation->set_rules('data','Data','required');
+        if($this->form_validation->run()){
+            $values = array(
+                'id_medico'=> $this->input->post('medico'),
+                'id_utente' => $this->input->post('utente'),
+                'data' => $this->input->post('data'),
+            );
+
+            if($this->consultas_model->create($values))
+                redirect(base_url().'backoffice/consultas');
+            $this->data['error'] = 'Erro ao criar user';
+        }
+        $this->data['form_action'] = base_url().'consulta/createConsulta';
+        $this->load->model('utentes_model');
+        $this->data['utenteList'] = $this->utentes_model->GetAll();
+        unset($this->utentes_model);
+        $this->load->model('medicos_model');
+        $this->data['medicoList'] = $this->medicos_model->GetAll();
+        unset($this->medicos_model);
+        $this->fileloader->loadBackOfficeView('backoffice/consulta/createConsulta',$this->data,$this->data['user']['tipo']);
     }
     public function backoffice(){
         if(is_null($this->data['user']))
@@ -30,7 +55,36 @@ class Consultas extends MY_Controller {
             $this->data['list'] = $this->consultas_model->getConsultas();
             $this->data['h1_text'] = 'Todas as consultas';
         }
-        $this->fileloader->loadBackOfficeView('backoffice/consultas',$this->data,$this->data['user']['tipo']);
+        $this->data['hasPerms'] = $this->data['user']['tipo'] === 'admin' || $this->data['user']['tipo'] === 'rececionita' ? true : false;
+        $this->data['create_consulta'] = base_url().'consulta/createConsulta';
+        $this->fileloader->loadBackOfficeView('backoffice/consulta/consultas',$this->data,$this->data['user']['tipo']);
+    }
+    public function deleteConsulta(){
+        $id = $this->uri->segment(3);
+        if(is_null($id))
+            redirect(base_url().'backoffice/consultas');
+        $this->consultas_model->delete($id);
+        redirect(base_url().'backoffice/consultas');
+    }
+    public function editConsulta(){ // TODO CHECK WHY DATA NOT GOING THROUGH
+        $id = $this->uri->segment(3);
+        if(is_null($id))
+            redirect(base_url().'backoffice/consultas');
+		$this->form_validation->set_rules('data','Data','required');
+		$this->form_validation->set_rules('estado','Estado','required');
+        if($this->form_validation->run()){
+            $values = array(
+                'data'=> $this->input->post('data'),
+                'estado' => $this->input->post('estado'),
+            );
+
+            if($this->consultas_model->Update($id,$values))
+                redirect(base_url().'backoffice/consultas');
+            $this->data['error'] = 'Erro ao atualizar consulta';
+        }
+        $this->data['consulta'] = $this->consultas_model->getConsultas(array('consulta.id' => $id));
+        $this->data['form_action'] = base_url().'consultas/edit/'.$id;
+        $this->fileloader->loadBackOfficeView('backoffice/consulta/editConsulta',$this->data,$this->data['user']['tipo']);
 
     }
 }

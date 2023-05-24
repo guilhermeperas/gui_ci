@@ -74,6 +74,9 @@ $route['backoffice/users'] = 'users/backoffice';
 $route['backoffice/users/editUser/(:num)?/(:any)?'] = 'users/editUser';
 
 $route['backoffice/consultas'] = 'consultas/backoffice';
+$route['consulta/createConsulta'] = 'consultas/createConsulta';
+$route['consultas/delete/(:num)'] = 'consultas/deleteConsulta/$1';
+$route['consultas/edit/(:num)'] = 'consultas/editConsulta/$1';
 $route['backoffice/receitas'] = 'receitas/backoffice';
 $route['editReceita/(:num)'] = 'receitas/editReceita/$1';
 

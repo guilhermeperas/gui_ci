@@ -12,11 +12,8 @@ class Consultas_model extends MY_Model {
 		$this->db->join('medico', 'medico.id = consulta.id_medico', 'inner');
 		$this->db->join('utente', 'utente.id = consulta.id_utente', 'inner');
 		$this->db->join('receita', 'receita.id = consulta.id_receita', 'left');
-		if(!is_null($where))
-			$query = $this->db->get_where($this->table, array('id_utente' => $id));
-		else
-			$query = $this->db->get($this->table);
-		return $query->result();
+		$query = $this->db->get_where($this->table, $where);
+		return $query->row_array();
 	}
 	public function get_todays_consultas_count(){
 		$this->db->from($this->table);

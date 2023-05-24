@@ -1,0 +1,16 @@
+<div class="list">
+    <p>{{error}}</p>
+    <form action={{form_action}} method="POST">
+        <label for="medico">Medico:</label>
+        <p>{{medico}}</p>
+        <label for="utente">Utente:</label>
+        <p>{{utente}}</p>
+        <label for="data">Quando:</label>
+        <input type="date" id="data" name="data" value="{{data}}">
+        <label for="data">Estado:</label>
+        <select name="estado">
+            <option value="Agendada">Agendada</option>
+            <option value="Concluida">Concluida</option>
+        </select>
+        <input type="submit" value="Atualizar">
+</div>
