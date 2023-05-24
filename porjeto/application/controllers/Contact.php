@@ -15,8 +15,7 @@ class Contact extends MY_Controller {
 			'action' => base_url('sendContact'),
 		);
 		if($this->session->userdata('logged_in')){
-			$user = $this->session->userdata('user');
-			$this->data['nome'] = $user['nome'];
+			$this->data['nome'] = $this->data['user']['nome'];
 		}
 		$this->fileloader->loadView('Contact',$this->data,false);
 	}

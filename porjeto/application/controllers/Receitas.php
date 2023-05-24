@@ -67,7 +67,6 @@ class Receitas extends MY_Controller {
 		if(empty($this->session->userdata('user'))){
 			redirect(base_url('login'));
 		}
-		$user = $this->session->userdata('user');
 		$id = $this->uri->segment(2);
 		$receita = $this->receitas_model->getReceitaData($id);
 		if(empty($receita))
@@ -90,7 +89,7 @@ class Receitas extends MY_Controller {
 		</body>
 		</html>
 			";
-		if(!$this->mymailer->send($user['email'],"Receita",$msg)){ // ?
+		if(!$this->mymailer->send($this->data['user']['email'],"Receita",$msg)){ // ?
 			redirect(base_url().'homepage'); 
 		}
 	}
