@@ -19,6 +19,7 @@ class Receitaprodutos extends MY_Controller {
 			$this->data['remover'] = base_url().'produtos/remover/';
 			$this->data['addProduto'] = base_url().'produtos/produtoList/'.$this->data['receita_id'];
 		}
+		$this->data['caminho'] = base_url().'uploads/produtos/';
 		$this->fileloader->loadView('produtos/produtos_receita',$this->data);
 	}
 	public function removeProdutoFromReceita(){

@@ -1,21 +1,23 @@
 <div class="content">
-    {{#produtos}}
     <table>
         <thead>
         <tr>
             <th>Nome</th>
             <th>Valor</th>
+            <th>Image</th>
             <th>Remover</th>
         </tr>
         </thead>
         <tbody>
+        {{#produtos}}
             <tr>
                 <td>{{nome}}</td>
                 <td>{{value}} $</td>
+                <td><img class="img" src="{{caminho}}{{img_path}}" alt="produto image"/></td>
                 <td><a href={{remover}}{{receita_id}}/{{id}}>Remover</a></td>
             </tr>
+        {{/produtos}}
         </tbody>
     </table>
-    {{/produtos}}
     <a href="{{addProduto}}">Adicionar Produto</a>
 </div>
