@@ -37,7 +37,9 @@
             <a class="download-button" href='{{url}}enfermeiros/consulta/{{id_consulta}}'>Enfermeiros</a>
             <a class="download-button" href='{{url}}downloadReceita/{{id}}'>Download</a>
             <a class="download-button" href='{{url}}sendEmail/{{id}}'>Enviar por email.</a>
-            <a class="download-button" href='{{url}}editReceita/{{id}}'>Editar</a>
+            {{#hasPerms}}
+                <a class="download-button" href='{{url}}editReceita/{{id}}'>Editar</a>
+            {{/hasPerms}}
         </div>
     {{/receita}}
 </div>

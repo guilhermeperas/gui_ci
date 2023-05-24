@@ -1,21 +1,28 @@
 <div class="content">
-    {{#enfermeiros}}
     <table>
         <thead>
         <tr>
             <th>Nome</th>
             <th>Especialidade</th>
+            {{#hasPerms}}
             <th>Remover</th>
+            {{/hasPerms}}
         </tr>
         </thead>
         <tbody>
+    {{#enfermeiros}}
             <tr>
                 <td>{{nome}}</td>
                 <td>{{especialidade}}</td>
+                {{#hasPerms}}
                 <td><a href={{remover}}{{consulta_id}}/{{id}}>Remover</a></td>
+                {{/hasPerms}}
             </tr>
+    {{/enfermeiros}}
         </tbody>
     </table>
-    {{/enfermeiros}}
+    {{#hasPerms}}
     <a href="{{addEnfermeiro}}">Adicionar Enfermeiro</a>
+    {{/hasPerms}}
+
 </div>

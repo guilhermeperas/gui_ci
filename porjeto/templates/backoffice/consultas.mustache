@@ -1,0 +1,36 @@
+<div class="list">
+    <h1>{{h1_text}}</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>Data</th>
+            <th>Estado</th>
+            <th>Medico</th>
+            <th>Utente</th>
+            <th>Receita</th>
+            <th>Enfermeiro(s)</th>
+        </tr>
+        </thead>
+        <tbody>
+            {{#list}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{data}}</td>
+                <td>{{estado}}</td>
+                <td>{{medico}}</td>
+                <td>{{utente}}</td>
+                <td>
+                {{#receita}}
+                    <a href="{{base_url}}receita/{{receita}}">Receita</a>
+                {{/receita}}
+                {{^receita}}
+                    <p>Nao ha</p>
+                {{/receita}}
+                </td>
+                <td><a href="{{base_url}}enfermeiros/consulta/{{id}}">Enfermeiros</a></td>
+            </tr>
+            {{/list}}
+        </tbody>
+    </table>
+</div>

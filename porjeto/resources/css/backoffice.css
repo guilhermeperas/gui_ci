@@ -45,7 +45,7 @@ body {
   margin-bottom: 10px;
 }
 .sucess {
-  color: rgb(20, 214, 20);
+  color: rgb(26, 150, 26);
   font-weight: bold;
   margin-bottom: 10px;
 }
@@ -109,4 +109,37 @@ input[type="submit"]:hover {
 
 .content tr:nth-child(even) {
   background-color: #f9f9f9;
+}
+.list {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+thead th {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+tbody td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+a {
+  text-decoration: none;
+  color: blue;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p {
+  color: #888;
 }

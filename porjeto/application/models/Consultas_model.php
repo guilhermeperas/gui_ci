@@ -6,6 +6,15 @@ class Consultas_model extends MY_Model {
 		parent::__construct();
 		$this->table = 'consulta';
 	}
+
+	function getUserConsultas($id){
+		$this->db->select('consulta.id,consulta.data,consulta.estado,medico.nome AS medico, utente.nome AS utente,receita.id as receita');
+		$this->db->join('medico', 'medico.id = consulta.id_medico', 'inner');
+		$this->db->join('utente', 'utente.id = consulta.id_utente', 'inner');
+		$this->db->join('receita', 'receita.id = consulta.id_receita', 'left');
+		$query = $this->db->get_where($this->table, array('id_utente' => $id));
+		return $query->result();
+	}
 	public function get_todays_consultas_count(){
 		$this->db->from($this->table);
 		$this->db->where('data',date("Y/m/d"));
@@ -16,7 +25,7 @@ class Consultas_model extends MY_Model {
 		$this->db->select('medico.nome AS medico, utente.nome AS utente');
 		$this->db->join('medico', 'medico.id = consulta.id_medico', 'inner');
 		$this->db->join('utente', 'utente.id = consulta.id_utente', 'inner');
-		$query = $this->db->get_where('consulta', array('data' => date("Y/m/d")));
+		$query = $this->db->get_where($this->table, array('data' => date("Y/m/d")));
 		return $query->result();
 	}
 	public function getLoggedInList(){

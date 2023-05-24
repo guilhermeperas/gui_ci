@@ -18,6 +18,7 @@ class Enfermeiroconsultas extends MY_Controller {
 			$this->data['remover'] = base_url().'enfermeiros/remover/';
 			$this->data['addEnfermeiro'] = base_url().'enfermeiros/enfermeiroList/'.$this->data['consulta_id'];
 		}
+		$this->data['hasPerms'] = $this->data['user']['tipo'] != 'admin' ? false : true;
 		$this->fileloader->loadView('enfermeiros/enfermeiro_consulta',$this->data);
 	}
 	public function removeEnfermeiroFromConsulta(){

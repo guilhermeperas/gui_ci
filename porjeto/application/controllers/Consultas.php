@@ -17,4 +17,20 @@ class Consultas extends MY_Controller {
 
         $this->loadLista('consultas',$this->session->userdata('logged_in'));
     }
+    public function backoffice(){
+        if(is_null($this->data['user']))
+            redirect(base_url().'login');
+        $this->data['title'] = "BackOffice Consultas";
+        $this->data['base_url'] = base_url();
+
+        if($this->data['user']['tipo'] === 'utente'){
+            $this->data['list'] = $this->consultas_model->getUserConsultas($this->data['user']['id']);
+            $this->data['h1_text'] = 'As suas consultas';
+        }else{
+            $this->data['list'] = $this->consultas_model->getConsultas();
+            $this->data['h1_text'] = 'Todas as consultas';
+        }
+        $this->fileloader->loadBackOfficeView('backoffice/consultas',$this->data,$this->data['user']['tipo']);
+
+    }
 }

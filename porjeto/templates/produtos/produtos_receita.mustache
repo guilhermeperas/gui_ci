@@ -5,7 +5,10 @@
             <th>Nome</th>
             <th>Valor</th>
             <th>Image</th>
-            <th>Remover</th>
+            {{#hasPerms}}
+                <th>Remover</th>
+            {{/hasPerms}}
+            
         </tr>
         </thead>
         <tbody>
@@ -14,10 +17,15 @@
                 <td>{{nome}}</td>
                 <td>{{value}} $</td>
                 <td><img class="img" src="{{caminho}}{{img_path}}" alt="produto image"/></td>
+                {{#hasPerms}}
                 <td><a href={{remover}}{{receita_id}}/{{id}}>Remover</a></td>
+                {{/hasPerms}}
             </tr>
         {{/produtos}}
         </tbody>
     </table>
-    <a href="{{addProduto}}">Adicionar Produto</a>
+    {{#hasPerms}}
+        <a href="{{addProduto}}">Adicionar Produto</a>
+    {{/hasPerms}}
+        
 </div>

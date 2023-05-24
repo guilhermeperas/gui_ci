@@ -34,6 +34,7 @@ class Receitas extends MY_Controller {
 		$this->data['title'] = 'Receita individual';
 		$this->data['url'] = base_url('');
 		$this->data['receita'] = $receita;
+		$this->data['hasPerms'] = $this->data['user']['tipo'] === 'utente' ? false : true;
 		$this->fileloader->loadView('receitas/individual',$this->data);
 	}
 
