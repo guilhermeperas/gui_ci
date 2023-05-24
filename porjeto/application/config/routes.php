@@ -77,11 +77,16 @@ $route['backoffice/consultas'] = 'consultas/backoffice';
 $route['consulta/createConsulta'] = 'consultas/createConsulta';
 $route['consultas/delete/(:num)'] = 'consultas/deleteConsulta/$1';
 $route['consultas/edit/(:num)'] = 'consultas/editConsulta/$1';
+$route['consultas/detalhe/(:num)'] = 'consultas/individual/$1';
+$route['consultas/update/(:num)/(:num)'] = 'consultas/update/$1/$2';
+
 $route['backoffice/receitas'] = 'receitas/backoffice';
 $route['editReceita/(:num)'] = 'receitas/editReceita/$1';
+$route['receitas/edit/(:num)'] = 'receitas/editReceita/$1';
+$route['receitas/delete/(:num)'] = 'receitas/deleteReceita/$1';
+$route['receitas/createReceita'] = 'receitas/createReceita';
 
 $route['backoffice/produtos'] = 'produtos/backoffice';
-
 $route['produtos/receita/(:num)'] = 'receitaprodutos/receita/$1';
 $route['produtos/remover/(:num)/(:num)'] = 'receitaprodutos/removeProdutoFromReceita/$1/$2';
 $route['produtos/addProduto/(:num)'] = 'receitaprodutos/addProdutoToReceita/$1';

@@ -31,4 +31,46 @@ abstract class MY_Controller extends CI_Controller {
         $this->data["list"] = $this->{$name . '_model'}->getNotLoggedInList();
         $this->fileloader->loadView('lists/logoff/l'.$name,$this->data);
     }
+    protected function upload($folder)
+    {
+        $this->load->library('upload');
+        if (!$this->upload->do_upload("imagem")) {
+            $data["info"] = $this->upload->display_errors();
+        } else {
+            $message = "";
+            $data['info'] = "Imagem processada com sucesso";
+            $data['info_upload'] = $this->upload->data();
+            print_r($data);
+            return;
+            $data['folder'] = $folder;
+            $this->setConfig($data);
+
+            $this->optImage("thumb");
+        }
+        return $data;
+    }
+    private function optImage($type){
+        $this->image_lib->initialize($configMain[$type]);
+
+        if(!$this->image_lib->{($opt == 'thumb') ? 'resize' : $opt}()){
+            $data['info'] = "<br/> NÃO FOI POSSIVEL GERAR O ".$type." DEVIDO AOS ERROS ABAIXO:<br/>";
+            $data['info'] .= $thumbnail['message'];
+        }else{
+            $data['info_upload']['thumb_path'] = 
+                $data['info_upload']['full_path']."/thumbs/".$data['info_upload']['raw_name']."_thumb".$data['info_upload']['file_ext'];
+        }
+    }
+    private function setConfig($fileUpload){
+        $this->configMain = [
+            "thumb" => [
+                'image_library'=> 'gd2',
+                'source_image'=> $fileUpload['info_upload']['full_path'],
+                'maintain_ratio' => TRUE,
+                'width' => 75,
+                'height' => 50,
+                'create_thumb' => TRUE,
+                'new_image' => "./uploads/".$fileUpload['folder']."/",
+            ],
+        ];
+    }
 }

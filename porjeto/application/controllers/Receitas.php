@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Receitas extends MY_Controller {
 	function __construct(){
 		parent::__construct();
+		$this->load->library('form_validation');
 		$this->load->model('receitas_model');
 		$this->data['css'] = base_url("resources/css/receitas.css");
 		$this->data['user'] = $this->session->userdata('user');
@@ -14,7 +15,11 @@ class Receitas extends MY_Controller {
 			redirect(base_url().'login');
 			return;
 		}
-		$this->fileloader->loadBackOfficeView('backoffice/receitas',$this->data,$this->data['user']['tipo']);
+		$this->data['list'] = $this->receitas_model->GetAll();
+		$this->data['h1_text'] = 'Receitas';
+		$this->data['base_url'] = base_url('');
+		$this->data['create_receita'] = base_url().'receitas/createReceita';
+		$this->fileloader->loadBackOfficeView('backoffice/receita/receitas',$this->data,$this->data['user']['tipo']);
 	}
 	public function editReceita(){
 		
@@ -37,7 +42,28 @@ class Receitas extends MY_Controller {
 		$this->data['hasPerms'] = $this->data['user']['tipo'] === 'utente' ? false : true;
 		$this->fileloader->loadView('receitas/individual',$this->data);
 	}
-
+	public function createReceita(){ // TODO FALTA O UPLOAD AQUI
+		$this->form_validation->set_rules('cuidado','Cuidado','required');
+		$this->form_validation->set_rules('receita','Receita','required');
+		$this->form_validation->set_rules('id_consulta','Consulta','required');
+        if($this->form_validation->run()){
+			$values = array(
+				'cuidado' => $this->input->post('cuidado'),
+				'receita' => $this->input->post('receita'),
+				'id_consulta' => $this->input->post('id_consulta'),
+			);
+            if($this->receitas_model->create($values)){
+				$last_id = $this->receitas_model->last_inserted_id();
+                redirect(base_url().'consultas/update/'.$values['id_consulta'].'/'.$last_id);
+			}
+            $this->data['error'] = 'Erro ao criar receita';
+        }
+        $this->data['form_action'] = base_url().'receitas/createReceita';
+		$this->load->model('consultas_model'); // metodo super errado 
+        $this->data['consultaList'] = $this->consultas_model->getConsultasWithNotReceita();
+        unset($this->consultas_model);
+        $this->fileloader->loadBackOfficeView('backoffice/receita/createReceita',$this->data,$this->data['user']['tipo']);
+    }
 	public function downloadReceita(){
 		$id = $this->uri->segment(2);
 		$receita = $this->receitas_model->getReceitaData($id);

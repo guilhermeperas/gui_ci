@@ -18,6 +18,9 @@ class Consultas extends MY_Controller {
 
         $this->loadLista('consultas',$this->session->userdata('logged_in'));
     }
+    public function individual(){
+        
+    }
     public function createConsulta(){
         $this->form_validation->set_rules('medico','Medico','required');
 		$this->form_validation->set_rules('utente','Utente','required');
@@ -41,6 +44,18 @@ class Consultas extends MY_Controller {
         $this->data['medicoList'] = $this->medicos_model->GetAll();
         unset($this->medicos_model);
         $this->fileloader->loadBackOfficeView('backoffice/consulta/createConsulta',$this->data,$this->data['user']['tipo']);
+    }
+    public function update(){
+        $consulta_id = $this->uri->segment(3);
+        if(is_null($consulta_id))
+            redirect(base_url().'backoffice/receitas');
+        $receita_id = $this->uri->segment(3);
+        if(is_null($receita_id))
+            redirect(base_url().'backoffice/receitas');
+        if($this->consultas_model->Update($consulta_id,array('id_receita' => $receita_id))){
+            redirect(base_url().'backoffice/receitas');
+            return;
+        }
     }
     public function backoffice(){
         if(is_null($this->data['user']))

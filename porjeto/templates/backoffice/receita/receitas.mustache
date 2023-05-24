@@ -1,0 +1,43 @@
+<div class="list">
+    <h1>{{h1_text}}</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>Cuidado</th>
+            <th>Receita</th>
+            <th>Imagem receita</th>
+            <th>Consulta</th>
+            {{#hasPerms}}
+                <th>Edicao</th>
+            {{/hasPerms}}
+        </tr>
+        </thead>
+        <tbody>
+            {{#list}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{cuidado}}</td>
+                <td>{{receita}}</td>
+                {{#img_path}}
+                 <td><img class="img" src="{{caminho}}{{img_path}}" alt="receita image"/></td>
+                {{/img_path}}
+                {{^img_path}}
+                    <td><p>nao ha</p></td>
+                {{/img_path}}
+
+                <td><a href="{{base_url}}consultas/detalhe/{{id_consulta}}">Consulta</a></td>
+
+                {{#hasPerms}}
+                <td>
+                    <a href="{{base_url}}receitas/edit/{{id}}">Editar</a>
+                    <a href="{{base_url}}receitas/delete/{{id}}">Apagar</a>
+                </td>
+                {{/hasPerms}}
+            </tr>
+            {{/list}}
+        </tbody>
+    </table>
+    <a href="{{create_receita}}">Criar Receita</a>
+
+</div>

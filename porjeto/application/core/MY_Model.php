@@ -20,6 +20,9 @@ class MY_Model extends CI_Model {
 	public function get_count(){
         return $this->db->count_all($this->table);
     }
+	public function last_inserted_id(){
+		return $this->db->insert_id();
+	}
 	function GetById($id) {
 		if(is_null($id))
 			return false;

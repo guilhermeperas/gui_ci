@@ -1,0 +1,17 @@
+<div class="list">
+    <p>{{error}}</p>
+    <form action={{form_action}} method="POST">
+        <label for="cuidado">Cuidado:</label>
+        <input type="text" name="cuidado">
+        <label for="receita">Receita:</label>
+        <input type="text" name="receita">
+        <label for="receita">Imagem receita:</label>
+        <input type="file" name="imagem"/>
+        <label for="id_consulta">Consulta:</label>
+        <select name="id_consulta">
+            {{#consultaList}}
+                <option value={{id}}>{{id}} - {{data}}</option>
+            {{/consultaList}}
+        </select>
+        <input type="submit" value="Submit">
+</div>

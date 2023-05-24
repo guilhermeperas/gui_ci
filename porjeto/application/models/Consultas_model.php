@@ -13,7 +13,11 @@ class Consultas_model extends MY_Model {
 		$this->db->join('utente', 'utente.id = consulta.id_utente', 'inner');
 		$this->db->join('receita', 'receita.id = consulta.id_receita', 'left');
 		$query = $this->db->get_where($this->table, $where);
-		return $query->row_array();
+		return $query->result();
+	}
+	function getConsultasWithNotReceita(){
+		$query = $this->db->get_where($this->table, array('id_receita' => null));
+		return $query->result();
 	}
 	public function get_todays_consultas_count(){
 		$this->db->from($this->table);
