@@ -11,7 +11,7 @@ class MY_Model extends CI_Model {
 	public function initializeLimit($limit,$start){
 		$this->db->limit($limit,$start);
 	}
-	public function Insert($data){
+	public function create($data){
 		if(!isset($data))
 			return false;
 			// insert(table, data)
@@ -20,11 +20,9 @@ class MY_Model extends CI_Model {
 	public function get_count(){
         return $this->db->count_all($this->table);
     }
-	// return array
 	function GetById($id) {
 		if(is_null($id))
 			return false;
-		//where(nomecampotabela, valor)
 		$this->db->where('id', $id);
 		$query= $this->db->get($this->table);
 		if ($query->num_rows() > 0)
@@ -32,11 +30,6 @@ class MY_Model extends CI_Model {
 		else
 			return null;
 	}
-	/* Lista todos os registos da tabela
-		$sort Campo para ordenação dos registos
-		$order Tipo de ordenação: ASC ou DESC
-		returna array
-  */
 	function GetAll($sort = 'id', $order = 'asc') {
 		 $this->db->order_by($sort, $order);
 		 $query = $this->db->get($this->table);
@@ -45,22 +38,14 @@ class MY_Model extends CI_Model {
 		else
 			return null;
 	}
-	/* Atualiza um registo na tabela
-	$int ID do registo a ser atualizado
-	$data Dados a serem inseridos
-	returna boolean
-  */
-	 function Update($id, $data) {
+
+	function Update($id, $data) {
 		if(is_null($id) || !isset($data))
 			return false;
 		$this->db->where('id', $id);
 		return $this->db->update($this->table, $data);
-	 }
-	/* Remove um registo na tabela
-	$int ID do registo a ser eliminado
-	returna boolean
-  */
-   function Delete($id) {
+	}
+   function delete($id) {
     if(is_null($id))
       return false;
 	$this->db->where('id', $id);

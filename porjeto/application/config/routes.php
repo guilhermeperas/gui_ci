@@ -70,6 +70,7 @@ $route['backoffice/users/editUser/(:num)?/(:any)?'] = 'users/editUser';
 
 $route['backoffice/consultas'] = 'consultas/backoffice';
 $route['backoffice/receitas'] = 'receitas/backoffice';
+$route['editReceita/(:num)'] = 'receitas/editReceita/$1';
 $route['backoffice/produtos'] = 'produtos/backoffice';
 
 // testing

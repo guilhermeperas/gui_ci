@@ -89,6 +89,7 @@ class Users extends MY_Controller {
             $this->fileloader->loadBackOfficeView('backoffice/users',$this->data,$user['tipo']);
             return;
         }
+        // if($this->users_model->checkExists($username)) // TODO function para verificar se o username ou email ja existem
         if($this->users_model->Update($id,array('username' => $username,'email' => $email,'password' => $password))){
             $user = $this->session->userdata('user');
             if($user['id'] === $id && $user['tipo'] === $tipo){

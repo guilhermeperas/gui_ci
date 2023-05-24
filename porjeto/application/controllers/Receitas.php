@@ -16,6 +16,9 @@ class Receitas extends MY_Controller {
 		}
 		$this->fileloader->loadBackOfficeView('backoffice/receitas',$this->data,$this->data['user']['tipo']);
 	}
+	public function editReceita(){
+		
+	}
 	public function individual(){ 
 		if(!$this->uri->segment(2))
 			redirect(base_url().'homepage');
