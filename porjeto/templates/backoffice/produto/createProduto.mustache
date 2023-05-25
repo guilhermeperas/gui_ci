@@ -1,6 +1,6 @@
 <div class="list">
-    <p>{{error}}</p>
-    <form action={{form_action}} method="POST">
+    {{error}}
+    <form action={{form_action}} method="POST" enctype="multipart/form-data">
         <label for="nome">Nome do produto:</label>
         <input type="text" name="nome" required/>
         <label for="value">Valor:</label>

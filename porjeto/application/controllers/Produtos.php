@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Produtos extends MY_Controller {
 	function __construct(){
 		parent::__construct();
+        $this->load->library('image_lib');
 		$this->load->model('produtos_model');
 	}
 
@@ -46,24 +47,38 @@ class Produtos extends MY_Controller {
 	public function criarProduto(){
         $this->form_validation->set_rules('nome','Nome','required');
 		$this->form_validation->set_rules('value','Valor','required');
+    
         if($this->form_validation->run()){
             $config['upload_path'] = './uploads/produtos/';
             $config['allowed_types'] = 'jpg|png|jpeg';
-            $this->load->library('upload', $config);
+            $this->load->library('upload',$config);
+            $this->upload->initialize($config); 
             if($this->upload->do_upload('imagem')){
-                $uploadData = $this->upload->data();
-                $img_path = $uploadData['file_name'];
-                $values = array(
-                    'nome'=> $this->input->post('nome'),
-                    'value' => $this->input->post('value'),
-                    'img_path' => $img_path,
-                );
-
-                if($this->produtos_model->create($values))
-                    redirect(base_url().'backoffice/produtos');
-                $this->data['error'] = 'Erro ao criar o produto';
+                $data['info_upload'] = $this->upload->data();
+                $thumb = [
+                    'image_library'=> 'gd2',
+                    'source_image'=> $data['info_upload']['full_path'],
+                    'maintain_ratio' => TRUE,
+                    'width' => 75,
+                    'height' => 50,
+                    'create_thumb' => FALSE,
+                    'new_image' => "./uploads/produtos/thumbnails/",
+                ];
+                $img_path = $data['info_upload']['file_name'];
+                $this->image_lib->initialize($thumb);
+                if($this->image_lib->resize()){
+                    $values = array(
+                        'nome'=> $this->input->post('nome'),
+                        'value' => $this->input->post('value'),
+                        'img_path' => $img_path,
+                    );
+                    if($this->produtos_model->create($values))
+                        redirect(base_url().'backoffice/produtos');
+                    $this->data['error'] = 'Erro ao criar o produto';
+                }
+                $this->data['error'] .= 'erro resize';
             }
-            $this->data['error'] = 'Upload error';
+            $this->data['error'] = $this->upload->display_errors();
         }
         $this->data['form_action'] = base_url().'produto/createProduto';
         $this->loadBackOfficeView('backoffice/produto/createProduto',$this->data);

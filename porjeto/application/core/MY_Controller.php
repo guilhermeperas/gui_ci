@@ -45,6 +45,8 @@ abstract class MY_Controller extends CI_Controller {
         );
         echo $this->m->render('common/header',$headerValues);
 
+        array_push($this->config->config['menu']['menuRoutes'],array('name' => !empty($this->data['user']) ? 'BackOffice' : 'Login' ,'path' => base_url('login')));
+
         echo $this->m->render('common/menu',$this->config->config['menu']);
 
         echo $this->m->render($view,$values);
