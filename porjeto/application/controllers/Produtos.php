@@ -44,6 +44,9 @@ class Produtos extends MY_Controller {
 
     }
 	public function criarProduto(){
+        if($this->data['user']['tipo'] != 'admin'){
+            redirect(base_url().'backoffice/produtos');
+        }
         $this->form_validation->set_rules('nome','Nome','required');
 		$this->form_validation->set_rules('value','Valor','required');
 		$this->form_validation->set_rules('imagem','Imagem','required');

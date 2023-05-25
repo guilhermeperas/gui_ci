@@ -33,6 +33,9 @@ class Utentes extends MY_Controller {
         $this->loadBackOfficeView('backoffice/utente/utentes',$this->data);
     }
     public function createUtente(){
+        if($this->data['user']['tipo'] != 'admin' || $this->data['user']['tipo'] != 'rececionista'){
+            redirect(base_url().'backoffice/utentes');
+        }
 		$this->form_validation->set_rules('nome','Nome','required');
 		$this->form_validation->set_rules('nUtente','Numero de Utente','required|min_length[9]|max_length[9]');
         if($this->input->post('newMorada'))

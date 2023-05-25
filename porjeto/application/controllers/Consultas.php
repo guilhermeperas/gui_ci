@@ -28,6 +28,9 @@ class Consultas extends MY_Controller {
         $this->loadView('consultas/individual',$this->data);
     }
     public function createConsulta(){
+        if($this->data['user']['tipo'] != 'rececionista' || $this->data['user']['tipo'] != 'admin'){
+            redirect(base_url().'backoffice/consultas');
+        }
         $this->form_validation->set_rules('medico','Medico','required');
 		$this->form_validation->set_rules('utente','Utente','required');
 		$this->form_validation->set_rules('data','Data','required');

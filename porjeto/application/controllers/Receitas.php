@@ -42,6 +42,9 @@ class Receitas extends MY_Controller {
 		$this->loadView('receitas/individual',$this->data);
 	}
 	public function createReceita(){ // TODO FALTA O UPLOAD AQUI
+		if($this->data['user']['tipo'] === 'utente' || $this->data['user']['tipo'] === 'rececionista'){
+            redirect(base_url().'login');
+        }
 		$this->form_validation->set_rules('cuidado','Cuidado','required');
 		$this->form_validation->set_rules('receita','Receita','required');
 		$this->form_validation->set_rules('id_consulta','Consulta','required');

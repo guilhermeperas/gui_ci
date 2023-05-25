@@ -43,6 +43,9 @@ class Enfermeiros extends MY_Controller {
         $this->loadBackOfficeView('backoffice/prof_saude/prof_saude',$this->data);
 	}
     function criarEnfermeiro(){
+        if($this->data['user']['tipo'] != 'admin'){
+            redirect(base_url().'backoffice/enfermeiros');
+        }
         $this->form_validation->set_rules('nome','Nome','required');
 		$this->form_validation->set_rules('especialidade','Especialidade','required');
 		$this->form_validation->set_rules('nif','NIF','required|min_length[9]|max_length[9]');
