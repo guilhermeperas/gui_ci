@@ -44,22 +44,26 @@ class Produtos extends MY_Controller {
 
     }
 	public function criarProduto(){
-        if($this->data['user']['tipo'] != 'admin'){
-            redirect(base_url().'backoffice/produtos');
-        }
         $this->form_validation->set_rules('nome','Nome','required');
 		$this->form_validation->set_rules('value','Valor','required');
-		$this->form_validation->set_rules('imagem','Imagem','required');
         if($this->form_validation->run()){
-            $values = array(
-                'nome'=> $this->input->post('nome'),
-                'value' => $this->input->post('value'),
-                'img_path' => $this->input->post('imagem'),
-            );
+            $config['upload_path'] = './uploads/produtos/';
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $this->load->library('upload', $config);
+            if($this->upload->do_upload('imagem')){
+                $uploadData = $this->upload->data();
+                $img_path = $uploadData['file_name'];
+                $values = array(
+                    'nome'=> $this->input->post('nome'),
+                    'value' => $this->input->post('value'),
+                    'img_path' => $img_path,
+                );
 
-            if($this->produtos_model->create($values))
-                redirect(base_url().'backoffice/produtos');
-            $this->data['error'] = 'Erro ao criar o produto';
+                if($this->produtos_model->create($values))
+                    redirect(base_url().'backoffice/produtos');
+                $this->data['error'] = 'Erro ao criar o produto';
+            }
+            $this->data['error'] = 'Upload error';
         }
         $this->data['form_action'] = base_url().'produto/createProduto';
         $this->loadBackOfficeView('backoffice/produto/createProduto',$this->data);

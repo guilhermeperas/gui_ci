@@ -49,16 +49,24 @@ class Receitas extends MY_Controller {
 		$this->form_validation->set_rules('receita','Receita','required');
 		$this->form_validation->set_rules('id_consulta','Consulta','required');
         if($this->form_validation->run()){
-			$values = array(
-				'cuidado' => $this->input->post('cuidado'),
-				'receita' => $this->input->post('receita'),
-				'id_consulta' => $this->input->post('id_consulta'),
-			);
-            if($this->receitas_model->create($values)){
-				$last_id = $this->receitas_model->last_inserted_id();
-                redirect(base_url().'consultas/update/'.$values['id_consulta'].'/'.$last_id);
-			}
+			$config['upload_path'] = './uploads/produtos/';
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $this->load->library('upload', $config);
+			if($this->upload->do_upload('imagem')){
+				$uploadData = $this->upload->data();
+                $img_path = $uploadData['file_name'];
+				$values = array(
+					'cuidado' => $this->input->post('cuidado'),
+					'receita' => $this->input->post('receita'),
+					'id_consulta' => $this->input->post('id_consulta'),
+					'imagem' => $img_path,
+				);
+				if($this->receitas_model->create($values)){
+					$last_id = $this->receitas_model->last_inserted_id();
+					redirect(base_url().'consultas/update/'.$values['id_consulta'].'/'.$last_id);
+				}
             $this->data['error'] = 'Erro ao criar receita';
+			}
         }
         $this->data['form_action'] = base_url().'receitas/createReceita';
 		$this->load->model('consultas_model'); // metodo super errado 
