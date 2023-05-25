@@ -70,7 +70,7 @@ class Users extends MY_Controller {
         $user = $this->users_model->getProfile($id,$tipo);
         if(!isset($user)){
             $this->data['error'] = 'User nao existe';
-            $this->loadBackOfficeView('backoffice/users',$this->data,$this->data['user']['tipo']);
+            $this->loadBackOfficeView('backoffice/users',$this->data);
             return;
         }
         // verificar se mudou alguma coisa

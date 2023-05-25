@@ -56,11 +56,13 @@ $route['homepage'] = 'Home/index';
 
 $route['medicos/(:num)'] = "medicos/index"; 
 $route['backoffice/medicos'] = 'medicos/backoffice';
+$route['medico/createMedico'] = 'medicos/criarMedico';
+$route['medico/delete/(:num)'] = 'medicos/delete/$1';
 
 $route['utentes/(:num)'] = "utentes/index";
 $route['backoffice/utentes'] = 'utentes/backoffice';
 $route['utentes/createUtente'] = 'utentes/createUtente';
-$route['backoffice/utentes/delete/(:num)'] = 'utentes/deleteUtente/$1';
+$route['utentes/delete/(:num)'] = 'utentes/delete/$1';
 $route['backoffice/utentes/edit/(:num)'] = 'utentes/editarUtente/$1';
 
 $route['enfermeiros/(:num)'] = "enfermeiros/index";
@@ -68,6 +70,8 @@ $route['backoffice/enfermeiros'] = 'enfermeiros/backoffice';
 $route['enfermeiros/consulta/(:num)'] = 'Enfermeiroconsultas/listEnfermeiro/$1';
 $route['enfermeiros/remover/(:num)/(:num)'] = 'Enfermeiroconsultas/removeEnfermeiroFromConsulta/$1/$2';
 $route['enfermeiros/addEnfermeiro/(:num)'] = 'Enfermeiroconsultas/addEnfermeiroToConsulta/$1';
+$route['enfermeiros/createEnfermeiro'] = 'enfermeiros/criarEnfermeiro';
+$route['enfermeiros/delete/(:num)'] = 'enfermeiros/delete/$1';
 
 $route['log_in'] = 'users/login';
 $route['login'] = 'users/index';
@@ -78,7 +82,7 @@ $route['backoffice/users/editUser/(:num)?/(:any)?'] = 'users/editUser';
 $route['consultas/(:num)'] = "consultas/index";
 $route['backoffice/consultas'] = 'consultas/backoffice';
 $route['consulta/createConsulta'] = 'consultas/createConsulta';
-$route['consultas/delete/(:num)'] = 'consultas/deleteConsulta/$1';
+$route['consultas/delete/(:num)'] = 'consultas/delete/$1';
 $route['consultas/edit/(:num)'] = 'consultas/editConsulta/$1';
 $route['consultas/detalhe/(:num)'] = 'consultas/individual/$1';
 $route['consultas/update/(:num)/(:num)'] = 'consultas/update/$1/$2';
@@ -86,7 +90,7 @@ $route['consultas/update/(:num)/(:num)'] = 'consultas/update/$1/$2';
 $route['backoffice/receitas'] = 'receitas/backoffice';
 $route['editReceita/(:num)'] = 'receitas/editReceita/$1';
 $route['receitas/edit/(:num)'] = 'receitas/editReceita/$1';
-$route['receitas/delete/(:num)'] = 'receitas/deleteReceita/$1';
+$route['receitas/delete/(:num)'] = 'receitas/delete/$1';
 $route['receitas/createReceita'] = 'receitas/createReceita';
 
 $route['backoffice/produtos'] = 'produtos/backoffice';
@@ -95,7 +99,7 @@ $route['produtos/remover/(:num)/(:num)'] = 'receitaprodutos/removeProdutoFromRec
 $route['produtos/addProduto/(:num)'] = 'receitaprodutos/addProdutoToReceita/$1';
 $route['produtos/produtoList/(:num)'] = 'produtos/produtoList/$1';
 $route['produto/createProduto'] = 'produtos/criarProduto';
-$route['produtos/delete/(:num)'] = 'produtos/deleteProduto/$1';
+$route['produtos/delete/(:num)'] = 'produtos/delete/$1';
 $route['produtos/edit/(:num)'] = 'produtos/editProduto/$1';
 
 

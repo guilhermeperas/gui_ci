@@ -1,0 +1,29 @@
+<div class="list">
+    <p>{{error}}</p>
+    <form action={{form_action}} method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" required/>
+
+        <label for="nif">Nif:</label>
+        <input type="number" name="nif" required/>
+
+        <label for="iban">IBAN:</label>
+        <input type="text" name="iban" required/>
+
+        <label for="especialidade">Especialidade:</label>
+        <input type="text" name="especialidade" required/>
+
+        <label for="especialidade">Morada:</label>
+        <select name="select_morada">
+            <option value="" selected disabled hidden>Escolha a morada</option>
+            {{#moradaList}}
+                <option value={{id}}>{{nome}}</option>
+            {{/moradaList}}
+        </select>
+        <div>
+            <label for="morada">Criar nova morada?</label>
+            <input type="checkbox" name="newMorada"/>
+        </div>
+        <input type="text" name="morada" placeholder="Nova Morada">
+        <input type="submit" value="Submit">
+</div>

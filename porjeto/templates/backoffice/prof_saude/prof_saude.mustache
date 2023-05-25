@@ -1,0 +1,41 @@
+<div class="list">
+    <h1>{{h1_text}}</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Nif</th>
+            <th>Iban</th>
+            <th>Especialidade</th>
+            <th>morada</th>
+            {{#hasPerms}}
+                <th>Edicao</th>
+            {{/hasPerms}}
+        </tr>
+        </thead>
+        <tbody>
+            {{#list}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{nome}}</td>
+                <td>{{nif}}</td>
+                <td>{{iban}}</td>
+                <td>{{especialidade}}</td>
+                <td>{{morada}}</td>
+                {{#hasPerms}}
+                    <td>
+                        <a href="{{base_url}}{{prof}}/edit/{{id}}">Editar</a>
+                        <a href="{{base_url}}{{prof}}/delete/{{id}}">Apagar</a>
+                    </td>
+                {{/hasPerms}}
+
+            </tr>
+            {{/list}}
+        </tbody>
+    </table>
+    {{#hasPerms}}
+        <a href="{{create_Prof}}">Criar {{prof}}</a>
+    {{/hasPerms}}
+
+</div>

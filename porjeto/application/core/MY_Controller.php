@@ -92,4 +92,14 @@ abstract class MY_Controller extends CI_Controller {
 
         echo $this->m->render($view,$data);
     }
+    function delete(){
+        $model = $this->uri->segment(1);
+        if(is_null($model))
+            redirect(base_url().'homepage');
+        $id = $this->uri->segment(3);
+        if(is_null($model))
+            redirect(base_url().'homepage');
+        $this->{$model.'_model'}->delete($id);
+        redirect(base_url().'backoffice/'.$model);
+    }
 }
