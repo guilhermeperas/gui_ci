@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Users extends MY_Controller { 
     function __construct(){
         parent::__construct();
-        $this->load->library(array('form_validation','passwordhash')); // se der error checka o nome da classe passwordjash
+        $this->load->library('passwordhash'); // se der error checka o nome da classe passwordjash
         $this->passwordhash->initialize(8,false);
 		$this->load->model('users_model');
         $this->users_model->initialize($this->passwordhash);

@@ -4,7 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Consultas extends MY_Controller { 
     function __construct(){
         parent::__construct();
-        $this->load->library('form_validation');
         $this->load->model('consultas_model');
     }
     

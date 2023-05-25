@@ -53,12 +53,15 @@ $route['default_controller'] = 'Home';
 
 $route['homepage'] = 'Home/index';
 
-$route['medicos/(:num)'] = "medicos/index"; 
-$route['utentes/(:num)'] = "utentes/index";
-$route['consultas/(:num)'] = "consultas/index";
 
+$route['medicos/(:num)'] = "medicos/index"; 
 $route['backoffice/medicos'] = 'medicos/backoffice';
+
+$route['utentes/(:num)'] = "utentes/index";
 $route['backoffice/utentes'] = 'utentes/backoffice';
+$route['utentes/createUtente'] = 'utentes/createUtente';
+$route['backoffice/utentes/delete/(:num)'] = 'utentes/deleteUtente/$1';
+$route['backoffice/utentes/edit/(:num)'] = 'utentes/editarUtente/$1';
 
 $route['enfermeiros/(:num)'] = "enfermeiros/index";
 $route['backoffice/enfermeiros'] = 'enfermeiros/backoffice';
@@ -66,13 +69,13 @@ $route['enfermeiros/consulta/(:num)'] = 'Enfermeiroconsultas/listEnfermeiro/$1';
 $route['enfermeiros/remover/(:num)/(:num)'] = 'Enfermeiroconsultas/removeEnfermeiroFromConsulta/$1/$2';
 $route['enfermeiros/addEnfermeiro/(:num)'] = 'Enfermeiroconsultas/addEnfermeiroToConsulta/$1';
 
-
 $route['log_in'] = 'users/login';
 $route['login'] = 'users/index';
 $route['logout'] = 'users/logout';
 $route['backoffice/users'] = 'users/backoffice';
 $route['backoffice/users/editUser/(:num)?/(:any)?'] = 'users/editUser';
 
+$route['consultas/(:num)'] = "consultas/index";
 $route['backoffice/consultas'] = 'consultas/backoffice';
 $route['consulta/createConsulta'] = 'consultas/createConsulta';
 $route['consultas/delete/(:num)'] = 'consultas/deleteConsulta/$1';
@@ -90,8 +93,8 @@ $route['backoffice/produtos'] = 'produtos/backoffice';
 $route['produtos/receita/(:num)'] = 'receitaprodutos/receita/$1';
 $route['produtos/remover/(:num)/(:num)'] = 'receitaprodutos/removeProdutoFromReceita/$1/$2';
 $route['produtos/addProduto/(:num)'] = 'receitaprodutos/addProdutoToReceita/$1';
-
 $route['produtos/produtoList/(:num)'] = 'produtos/produtoList/$1';
+
 
 
 // testing

@@ -1,0 +1,24 @@
+<div class="list">
+    <p>{{error}}</p>
+    {{#utente}}
+    <form action={{form_action}} method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" placeholder="Nome" value="{{nome}}"required>
+        <label for="nUtente">Numero de utente:</label>
+        <input type="number" name="nUtente" placeholder="Numero de utente" value="{{nUtente}}" minlength="9" maxlength="9" required>
+        <label for="select_morada">Morada:</label>
+        <select name="select_morada">
+            <option value="" selected disabled hidden>Escolha a morada</option>
+            {{#moradaList}}
+                <option value={{id}} {{#selected}}selected{{/selected}}>{{nome}}</option>
+            {{/moradaList}}
+        </select>
+        <div>
+            <label for="morada">Criar nova morada?</label>
+            <input type="checkbox" name="newMorada"/>
+        </div>
+        <input type="text" name="morada" placeholder="Nova Morada">
+        <input type="submit" value="Submit">
+    {{/utente}}
+
+</div>

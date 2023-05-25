@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database','session','fileloader');
+$autoload['libraries'] = array('database','session','fileloader','form_validation');
 // $autoload['libraries'] = array('database','session','form_validation','image_lib','upload'); caso use no sistema todo.
 
 /*

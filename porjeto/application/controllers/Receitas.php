@@ -4,7 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Receitas extends MY_Controller {
 	function __construct(){
 		parent::__construct();
-		$this->load->library('form_validation');
 		$this->load->model('receitas_model');
 		$this->data['css'] = base_url("resources/css/receitas.css");
 		$this->data['user'] = $this->session->userdata('user');
