@@ -8,8 +8,14 @@ abstract class MY_Controller extends CI_Controller {
     );
     private $page;
     private $per_page;
+    private $m;
 	function __construct(){
 		parent::__construct();
+
+        $loader = new Mustache_Loader_FilesystemLoader('./templates');
+        $this->m = new Mustache_Engine(['loader' => $loader]);
+        $this->config->load('fileLoader');
+
         $this->data['user'] = $this->session->userdata('user');
 	}
     protected function initialize($config){
@@ -25,52 +31,65 @@ abstract class MY_Controller extends CI_Controller {
         $this->{$name . '_model'}->initializeLimit($this->per_page , $this->page);
         if($this->session->userdata('logged_in')){
             $this->data["list"] = $this->{$name . '_model'}->getLoggedInList();
-            $this->fileloader->loadView('lists/login/l'.$name,$this->data);
+            $this->loadView('lists/login/l'.$name,$this->data);
             return;
         }
         $this->data["list"] = $this->{$name . '_model'}->getNotLoggedInList();
-        $this->fileloader->loadView('lists/logoff/l'.$name,$this->data);
+        $this->loadView('lists/logoff/l'.$name,$this->data);
     }
-    protected function upload($folder)
-    {
-        $this->load->library('upload');
-        if (!$this->upload->do_upload("imagem")) {
-            $data["info"] = $this->upload->display_errors();
-        } else {
-            $message = "";
-            $data['info'] = "Imagem processada com sucesso";
-            $data['info_upload'] = $this->upload->data();
-            print_r($data);
-            return;
-            $data['folder'] = $folder;
-            $this->setConfig($data);
+    function loadView($view,$values = null){
+        $headerValues = array(
+            'main_css' =>base_url("resources/css/main.css"),
+            'css' => $values && array_key_exists('css',$values) ? $values['css'] : null,
+            'title' => $values && array_key_exists('title',$values) ? $values['title'] : $view,
+        );
+        echo $this->m->render('common/header',$headerValues);
 
-            $this->optImage("thumb");
-        }
-        return $data;
-    }
-    private function optImage($type){
-        $this->image_lib->initialize($configMain[$type]);
+        echo $this->m->render('common/menu',$this->config->config['menu']);
 
-        if(!$this->image_lib->{($opt == 'thumb') ? 'resize' : $opt}()){
-            $data['info'] = "<br/> NÃO FOI POSSIVEL GERAR O ".$type." DEVIDO AOS ERROS ABAIXO:<br/>";
-            $data['info'] .= $thumbnail['message'];
-        }else{
-            $data['info_upload']['thumb_path'] = 
-                $data['info_upload']['full_path']."/thumbs/".$data['info_upload']['raw_name']."_thumb".$data['info_upload']['file_ext'];
-        }
+        echo $this->m->render($view,$values);
+        
+        echo $this->m->render('common/footer',$this->config->config['footer']);
     }
-    private function setConfig($fileUpload){
-        $this->configMain = [
-            "thumb" => [
-                'image_library'=> 'gd2',
-                'source_image'=> $fileUpload['info_upload']['full_path'],
-                'maintain_ratio' => TRUE,
-                'width' => 75,
-                'height' => 50,
-                'create_thumb' => TRUE,
-                'new_image' => "./uploads/".$fileUpload['folder']."/",
-            ],
-        ];
+    function loadBackOfficeView($view,$values){ 
+        if(is_null($this->data['user']))
+            redirect(base_url().'login');
+        $this->data['menuRoutes'] = array();
+        if($this->data['user']['tipo'] === 'admin'){
+                $this->data['menuRoutes'] = array(
+                    array('name' => 'Users','path' => base_url('backoffice/users')),
+                    array('name' => 'Produtos','path' => base_url('backoffice/produtos')),
+		        );
+        }
+        if($this->data['user']['tipo']!== 'utente'){
+            array_push($this->data['menuRoutes'],array('name' => 'Utentes','path' => base_url('backoffice/utentes')),
+            array('name' => 'Receitas','path' => base_url('backoffice/receitas')),
+            );
+        }
+        array_push($this->data['menuRoutes'],
+                array('name' => 'Perfil','path' => base_url('backoffice/users')),
+                array('name' => 'Medicos','path' => base_url('backoffice/medicos')),
+                array('name' => 'Enfermeiros','path' => base_url('backoffice/enfermeiros')),
+                array('name' => 'Consultas','path' => base_url('backoffice/consultas')),
+                array('name' => 'Logout','path' => base_url('logout')),
+            );
+        $this->data['title'] = 'BackOffice';
+        $this->data['css'] = base_url("resources/css/backoffice.css");
+
+        echo $this->m->render('backoffice/menu',$this->data);
+                        
+        echo $this->m->render($view,$values);
+
+        echo $this->m->render('backoffice/footer');
+    }
+    public function singleView($view,$data = null){
+        $headerValues = array(
+            'main_css' =>base_url("resources/css/main.css"),
+            'css' => $data && array_key_exists('css',$data) ? $data['css'] : null,
+            'title' => $data && array_key_exists('title',$data) ? $data['title'] : $view,
+        );
+        echo $this->m->render('common/header',$headerValues);
+
+        echo $this->m->render($view,$data);
     }
 }

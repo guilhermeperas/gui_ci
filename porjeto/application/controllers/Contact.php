@@ -16,7 +16,7 @@ class Contact extends MY_Controller {
 		if($this->session->userdata('logged_in')){
 			$this->data['nome'] = $this->data['user']['nome'];
 		}
-		$this->fileloader->loadView('Contact',$this->data,false);
+		$this->loadView('Contact',$this->data,false);
 	}
 	public function sendContact(){ // TODO NEEDS CHECKING BRO
 		$this->form_validation->set_rules('name','Nome','required');

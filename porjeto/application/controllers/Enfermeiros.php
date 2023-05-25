@@ -28,7 +28,7 @@ class Enfermeiros extends MY_Controller {
         $this->data['label'] = 'Adicionar Enfermeiro';
         $this->data['selectName'] = "enfermeiro";
 		$this->data['form_action'] =  base_url().'enfermeiros/addEnfermeiro/'.$this->data['consulta_id'];
-		$this->fileloader->loadView('mixed/add_something',$this->data);
+		$this->loadView('mixed/add_something',$this->data);
 
 	}
 }

@@ -18,7 +18,7 @@ class Receitas extends MY_Controller {
 		$this->data['h1_text'] = 'Receitas';
 		$this->data['base_url'] = base_url('');
 		$this->data['create_receita'] = base_url().'receitas/createReceita';
-		$this->fileloader->loadBackOfficeView('backoffice/receita/receitas',$this->data,$this->data['user']['tipo']);
+		$this->loadBackOfficeView('backoffice/receita/receitas',$this->data,$this->data['user']['tipo']);
 	}
 	public function editReceita(){
 		
@@ -32,14 +32,14 @@ class Receitas extends MY_Controller {
 		$receita = $this->receitas_model->getReceitaData($id);
 		if(empty($receita)){
 			$this->data['error'] = 'A Receita nao existe!';
-			$this->fileloader->loadView('receitas/individual',$this->data);
+			$this->loadView('receitas/individual',$this->data);
 			return;
 		}		
 		$this->data['title'] = 'Receita individual';
 		$this->data['url'] = base_url('');
 		$this->data['receita'] = $receita;
 		$this->data['hasPerms'] = $this->data['user']['tipo'] === 'utente' ? false : true;
-		$this->fileloader->loadView('receitas/individual',$this->data);
+		$this->loadView('receitas/individual',$this->data);
 	}
 	public function createReceita(){ // TODO FALTA O UPLOAD AQUI
 		$this->form_validation->set_rules('cuidado','Cuidado','required');
@@ -61,7 +61,7 @@ class Receitas extends MY_Controller {
 		$this->load->model('consultas_model'); // metodo super errado 
         $this->data['consultaList'] = $this->consultas_model->getConsultasWithNotReceita();
         unset($this->consultas_model);
-        $this->fileloader->loadBackOfficeView('backoffice/receita/createReceita',$this->data,$this->data['user']['tipo']);
+        $this->loadBackOfficeView('backoffice/receita/createReceita',$this->data,$this->data['user']['tipo']);
     }
 	public function downloadReceita(){
 		$id = $this->uri->segment(2);

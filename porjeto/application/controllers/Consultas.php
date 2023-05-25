@@ -25,7 +25,7 @@ class Consultas extends MY_Controller {
         $this->data['title'] = 'Detalhe da consulta '.$id;
 		$this->data['css'] = base_url("resources/css/consultas.css");
 		$this->data['base_url'] = base_url();
-        $this->fileloader->loadView('consultas/individual',$this->data);
+        $this->loadView('consultas/individual',$this->data);
     }
     public function createConsulta(){
         $this->form_validation->set_rules('medico','Medico','required');
@@ -49,7 +49,7 @@ class Consultas extends MY_Controller {
         $this->load->model('medicos_model');
         $this->data['medicoList'] = $this->medicos_model->GetAll();
         unset($this->medicos_model);
-        $this->fileloader->loadBackOfficeView('backoffice/consulta/createConsulta',$this->data,$this->data['user']['tipo']);
+        $this->loadBackOfficeView('backoffice/consulta/createConsulta',$this->data,$this->data['user']['tipo']);
     }
     public function update(){
         $consulta_id = $this->uri->segment(3);
@@ -77,7 +77,7 @@ class Consultas extends MY_Controller {
         }
         $this->data['hasPerms'] = $this->data['user']['tipo'] === 'admin' || $this->data['user']['tipo'] === 'rececionita' ? true : false;
         $this->data['create_consulta'] = base_url().'consulta/createConsulta';
-        $this->fileloader->loadBackOfficeView('backoffice/consulta/consultas',$this->data,$this->data['user']['tipo']);
+        $this->loadBackOfficeView('backoffice/consulta/consultas',$this->data,$this->data['user']['tipo']);
     }
     public function deleteConsulta(){
         $id = $this->uri->segment(3);
@@ -104,7 +104,7 @@ class Consultas extends MY_Controller {
         }
         $this->data['consulta'] = $this->consultas_model->getConsultas(array('consulta.id' => $id));
         $this->data['form_action'] = base_url().'consultas/edit/'.$id;
-        $this->fileloader->loadBackOfficeView('backoffice/consulta/editConsulta',$this->data,$this->data['user']['tipo']);
+        $this->loadBackOfficeView('backoffice/consulta/editConsulta',$this->data,$this->data['user']['tipo']);
 
     }
 }

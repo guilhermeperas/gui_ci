@@ -9,6 +9,6 @@ class Home extends MY_Controller {
 	{
 		$this->data['css'] = base_url("resources/css/homepage.css");
 		$this->data['title'] = 'Home';
-		$this->fileloader->loadView('HomePage',$this->data);
+		$this->loadView('HomePage',$this->data);
 	}
 }

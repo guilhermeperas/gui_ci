@@ -30,7 +30,7 @@ class Utentes extends MY_Controller {
         if($this->data['hasPerms'])
             $this->data['create_utente'] = base_url().'utentes/createUtente';
 
-        $this->fileloader->loadBackOfficeView('backoffice/utente/utentes',$this->data,$this->data['user']['tipo']);
+        $this->loadBackOfficeView('backoffice/utente/utentes',$this->data,$this->data['user']['tipo']);
     }
     public function createUtente(){
 		$this->form_validation->set_rules('nome','Nome','required');
@@ -69,7 +69,7 @@ class Utentes extends MY_Controller {
         $this->data['moradaList'] = $this->moradas_model->GetAll();
         unset($this->moradas_model);
         $this->data['form_action'] = base_url().'utentes/createUtente';
-        $this->fileloader->loadBackOfficeView('backoffice/utente/createUtente',$this->data,$this->data['user']['tipo']);
+        $this->loadBackOfficeView('backoffice/utente/createUtente',$this->data,$this->data['user']['tipo']);
     }
     public function deleteUtente(){
         $id = $this->uri->segment(4);
@@ -86,6 +86,6 @@ class Utentes extends MY_Controller {
         $this->load->model('moradas_model');
         $this->data['moradaList'] = $this->moradas_model->GetAll();
         unset($this->moradas_model);
-        $this->fileloader->loadBackOfficeView('backoffice/utente/editUtente',$this->data,$this->data['user']['tipo']);
+        $this->loadBackOfficeView('backoffice/utente/editUtente',$this->data,$this->data['user']['tipo']);
     }
 }

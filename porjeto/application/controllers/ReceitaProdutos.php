@@ -20,7 +20,7 @@ class Receitaprodutos extends MY_Controller {
 		}
 		$this->data['hasPerms'] = $this->data['user']['tipo'] === 'utente' ? false : true;
 		$this->data['caminho'] = base_url().'uploads/produtos/';
-		$this->fileloader->loadView('produtos/produtos_receita',$this->data);
+		$this->loadView('produtos/produtos_receita',$this->data);
 	}
 	public function removeProdutoFromReceita(){
 		// 1 id e da receita 2 e do produto

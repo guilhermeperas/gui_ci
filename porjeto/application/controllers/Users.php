@@ -19,7 +19,7 @@ class Users extends MY_Controller {
 			redirect(base_url('backoffice/users'));
 			return;
 		}
-		$this->fileloader->singleView('Login',$this->data);
+		$this->singleView('Login',$this->data);
 	}
 	public function login(){
 		$this->form_validation->set_rules('username','user','required');
@@ -35,12 +35,12 @@ class Users extends MY_Controller {
 				}
 		}
 		$this->data['error'] = 'Dados inválidos';
-		$this->fileloader->singleView('Login',$this->data);
+		$this->singleView('Login',$this->data);
 	}
 	public function logout(){
 		$this->session->sess_destroy();
 		$this->data['logout_sucess'] = 'logout com sucesso!!!';
-		$this->fileloader->singleView('Login',$this->data);
+		$this->singleView('Login',$this->data);
 	}
     public function backOffice(){
         if(!$this->session->userdata('logged_in')){
@@ -53,7 +53,7 @@ class Users extends MY_Controller {
         if($this->data['user']['tipo'] === 'admin')
             $this->data['list'] = $this->users_model->getAllUsers();
 
-        $this->fileloader->loadBackOfficeView('backoffice/users',$this->data,$user['tipo']);
+        $this->loadBackOfficeView('backoffice/users',$this->data);
     }
     public function editUser(){
         $id = $this->uri->segment(4);
@@ -70,7 +70,7 @@ class Users extends MY_Controller {
         $user = $this->users_model->getProfile($id,$tipo);
         if(!isset($user)){
             $this->data['error'] = 'User nao existe';
-            $this->fileloader->loadBackOfficeView('backoffice/users',$this->data,$this->data['user']['tipo']);
+            $this->loadBackOfficeView('backoffice/users',$this->data,$this->data['user']['tipo']);
             return;
         }
         // verificar se mudou alguma coisa
@@ -86,7 +86,7 @@ class Users extends MY_Controller {
             $password = $user['password'];
         if($user['username'] === $username && $user['email'] === $email){
             $this->data['error'] = 'Nao alterou nada!';
-            $this->fileloader->loadBackOfficeView('backoffice/users',$this->data,$user['tipo']);
+            $this->loadBackOfficeView('backoffice/users',$this->data,$user['tipo']);
             return;
         }
         // if($this->users_model->checkExists($username)) // TODO function para verificar se o username ou email ja existem

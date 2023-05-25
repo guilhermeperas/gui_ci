@@ -17,7 +17,7 @@ class Produtos extends MY_Controller {
         $this->data['hasPerms'] = $this->data['user']['tipo'] === 'admin' ? true : false;
         $this->data['create_produto'] = base_url().'produto/createProduto';
 		$this->data['caminho'] =base_url().'uploads/produtos/';
-        $this->fileloader->loadBackOfficeView('backoffice/produto/produtos',$this->data,$this->data['user']['tipo']);
+        $this->loadBackOfficeView('backoffice/produto/produtos',$this->data,$this->data['user']['tipo']);
 	}
 	public function deleteProduto(){
         $id = $this->uri->segment(3);
@@ -47,7 +47,7 @@ class Produtos extends MY_Controller {
         }
         $this->data['produto'] = $this->produtos_model->GetById($id);
         $this->data['form_action'] = base_url().'produtos/edit/'.$id;
-        $this->fileloader->loadBackOfficeView('backoffice/produto/editProduto',$this->data,$this->data['user']['tipo']);
+        $this->loadBackOfficeView('backoffice/produto/editProduto',$this->data,$this->data['user']['tipo']);
 
     }
 	public function criarProduto(){
@@ -66,7 +66,7 @@ class Produtos extends MY_Controller {
             $this->data['error'] = 'Erro ao criar o produto';
         }
         $this->data['form_action'] = base_url().'produto/createProduto';
-        $this->fileloader->loadBackOfficeView('backoffice/produto/createProduto',$this->data,$this->data['user']['tipo']);
+        $this->loadBackOfficeView('backoffice/produto/createProduto',$this->data,$this->data['user']['tipo']);
     }
 	function produtoList(){
 		$this->data['title'] ='Adicionar Produto';
@@ -78,6 +78,6 @@ class Produtos extends MY_Controller {
 		$this->data['label'] = 'Adicionar Produto';
         $this->data['selectName'] = "produto";
 		$this->data['form_action'] =  base_url().'produtos/addProduto/'.$this->data['receita_id'];
-		$this->fileloader->loadView('mixed/add_something',$this->data);
+		$this->loadView('mixed/add_something',$this->data);
 	}
 }
