@@ -94,7 +94,9 @@ $route['produtos/receita/(:num)'] = 'receitaprodutos/receita/$1';
 $route['produtos/remover/(:num)/(:num)'] = 'receitaprodutos/removeProdutoFromReceita/$1/$2';
 $route['produtos/addProduto/(:num)'] = 'receitaprodutos/addProdutoToReceita/$1';
 $route['produtos/produtoList/(:num)'] = 'produtos/produtoList/$1';
-
+$route['produto/createProduto'] = 'produtos/criarProduto';
+$route['produtos/delete/(:num)'] = 'produtos/deleteProduto/$1';
+$route['produtos/edit/(:num)'] = 'produtos/editProduto/$1';
 
 
 // testing

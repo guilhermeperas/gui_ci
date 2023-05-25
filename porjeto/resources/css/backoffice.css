@@ -88,7 +88,6 @@ input[type="submit"] {
   color: white;
   cursor: pointer;
 }
-
 input[type="submit"]:hover {
   background-color: #45a049;
 }
@@ -116,7 +115,10 @@ input[type="submit"]:hover {
   padding: 20px;
   width: 100%;
 }
-
+.img {
+  width: 105px;
+  height: 75px;
+}
 table {
   width: 100%;
 }

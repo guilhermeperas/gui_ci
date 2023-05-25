@@ -1,0 +1,33 @@
+<div class="container">
+    {{#consulta}}
+        <div class="miniContainer">
+            <p class="title">Data da consulta:</h2>
+            <p class="subtitle">{{data}}</p>
+        </div>
+        <div class="miniContainer">
+            <p class="title">Estado:</h2>
+            <p class="subtitle">{{estado}}</p>
+        </div>
+        <div class="miniContainer">
+            <p class="title">Utente:</h2>
+            <p class="subtitle">{{utente}}</p>
+        </div>
+        <div class="miniContainer">
+            <p class="title">Medico:</h2>
+            <p class="subtitle">{{medico}}</p>
+        </div>
+        <div class="miniContainer">
+            <p class="title">Receita:</h2>
+            <p class="subtitle"><a href="{{base_url}}receita/{{receita}}">Receita</a></p>
+        </div>
+        <div class="miniContainer">
+            <p class="title">Receita:</h2>
+            <p class="subtitle"><a href="{{base_url}}enfermeiros/consulta/{{id}}">Enfermeiros</a></p>
+        </div>
+            {{#hasPerms}}
+            <div class="miniContainer">
+                <a class="download-button" href='{{url}}editReceita/{{id}}'>Editar</a>
+            </div>
+            {{/hasPerms}}
+    {{/consulta}}
+</div>

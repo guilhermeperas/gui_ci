@@ -18,7 +18,14 @@ class Consultas extends MY_Controller {
         $this->loadLista('consultas',$this->session->userdata('logged_in'));
     }
     public function individual(){
-        
+        $id = $this->uri->segment(3);
+        if(is_null($id))
+            redirect(base_url().'login');
+        $this->data['consulta'] = $this->consultas_model->getConsultas(array('consulta.id' => $id));
+        $this->data['title'] = 'Detalhe da consulta '.$id;
+		$this->data['css'] = base_url("resources/css/consultas.css");
+		$this->data['base_url'] = base_url();
+        $this->fileloader->loadView('consultas/individual',$this->data);
     }
     public function createConsulta(){
         $this->form_validation->set_rules('medico','Medico','required');
@@ -48,7 +55,7 @@ class Consultas extends MY_Controller {
         $consulta_id = $this->uri->segment(3);
         if(is_null($consulta_id))
             redirect(base_url().'backoffice/receitas');
-        $receita_id = $this->uri->segment(3);
+        $receita_id = $this->uri->segment(4);
         if(is_null($receita_id))
             redirect(base_url().'backoffice/receitas');
         if($this->consultas_model->Update($consulta_id,array('id_receita' => $receita_id))){
@@ -61,7 +68,6 @@ class Consultas extends MY_Controller {
             redirect(base_url().'login');
         $this->data['title'] = "BackOffice Consultas";
         $this->data['base_url'] = base_url();
-
         if($this->data['user']['tipo'] === 'utente'){
             $this->data['list'] = $this->consultas_model->getConsultas($this->data['user']['id']);
             $this->data['h1_text'] = 'As suas consultas';

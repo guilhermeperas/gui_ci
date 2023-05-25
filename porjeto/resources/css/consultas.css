@@ -32,3 +32,42 @@ p {
   margin: 0;
   color: #888;
 }
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.miniContainer {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.subtitle {
+  margin-top: 5px;
+}
+
+.download-button {
+  display: inline-block;
+  margin: 5px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.download-button:hover {
+  background-color: #45a049;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
