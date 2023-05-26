@@ -65,10 +65,10 @@ abstract class MY_Controller extends CI_Controller {
             if($this->data['user']['tipo']!== 'utente'){
                 array_push($this->data['menuRoutes'],array('name' => 'Utentes','path' => base_url('backoffice/utentes')),
                 array('name' => 'Receitas','path' => base_url('backoffice/receitas')),
+                array('name' => 'Produtos','path' => base_url('backoffice/produtos')),
             );
         }
         array_push($this->data['menuRoutes'],
-        array('name' => 'Produtos','path' => base_url('backoffice/produtos')),
                 array('name' => 'Perfil','path' => base_url('backoffice/users')),
                 array('name' => 'Medicos','path' => base_url('backoffice/medicos')),
                 array('name' => 'Enfermeiros','path' => base_url('backoffice/enfermeiros')),

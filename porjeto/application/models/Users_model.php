@@ -65,7 +65,6 @@ class Users_model extends MY_Model {
         return $query->row_array();
     }
     public function createSession($user_data){
-        $this->session->set_userdata(array('logged_in' => true,'user'=> $this->getByType($user_data['id'],$user_data['tipo'])));
+        $this->session->set_userdata(array('logged_in' => true,'user'=> $user_data));
     }
-    public function checkExists($username,$email){}
 }

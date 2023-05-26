@@ -47,7 +47,6 @@ class Users extends MY_Controller {
             redirect(base_url().'login');
         }
         $user = $this->session->userdata('user');
-
         $this->data['action'] = base_url('backoffice/users/'); // para os forms
         $this->data['user'] = $this->users_model->getProfile($user['id'],$user['tipo']);
         if($this->data['user']['tipo'] === 'admin')

@@ -13,8 +13,9 @@ class Contact extends MY_Controller {
 			'css' => base_url("resources/css/contact.css"),
 			'action' => base_url('sendContact'),
 		);
+		$user = $this->session->userdata('user');
 		if($this->session->userdata('logged_in')){
-			$this->data['nome'] = $this->data['user']['nome'];
+			$this->data['nome'] = $user['username'];
 		}
 		$this->loadView('Contact',$this->data,false);
 	}
