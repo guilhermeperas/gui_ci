@@ -25,7 +25,7 @@ class Contact extends MY_Controller {
 		if($this->form_validation->run()){
 			$contact['nome'] = $this->input->post('name');
 			$contact['message'] = $this->input->post('message');
-			if($this->contact_model->Insert($contact))
+			if($this->contact_model->insert($contact))
 				redirect(base_url().'home');; 
 		}
 	}

@@ -7,9 +7,7 @@
             <th>Nome</th>
             <th>Valor</th>
             <th>Imagem</th>
-            {{#hasPerms}}
-                <th>Edicao</th>
-            {{/hasPerms}}
+            <th>Edicao</th>
         </tr>
         </thead>
         <tbody>
@@ -20,11 +18,8 @@
                 <td>{{value}}$</td>
                 <td><img class="img" src="{{caminho}}thumbnails/{{img_path}}" alt="produto image"/></td>
                 <td>
-                {{#hasPerms}}
                     <a href="{{base_url}}produtos/edit/{{id}}">Editar</a>
                     <a href="{{base_url}}produtos/delete/{{id}}">Apagar</a>
-                {{/hasPerms}}
-
                 </td>
             </tr>
             {{/list}}

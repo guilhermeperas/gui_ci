@@ -29,6 +29,7 @@ class Users extends MY_Controller {
 			$password = $this->input->post('password');
 			if($user = $this->users_model->getByUsername($username))
 				if($this->users_model->checkPassword($password,$user['password'])){
+                    unset($user['password']);
 					$this->users_model->createSession($user);
 					redirect(base_url().'homepage');
 					return;
